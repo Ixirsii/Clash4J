@@ -1,6 +1,7 @@
 package tech.ixirsii.clash;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.json.JsonMapper;
@@ -17,7 +18,14 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 import reactor.core.publisher.Mono;
 import tech.ixirsii.clash.data.ClientError;
+import tech.ixirsii.clash.data.Page;
 import tech.ixirsii.clash.data.capital.CapitalRaidSeason;
+import tech.ixirsii.clash.data.clan.Clan;
+import tech.ixirsii.clash.data.clan.ClanMember;
+import tech.ixirsii.clash.data.clan.WarFrequency;
+import tech.ixirsii.clash.data.league.ClanWarLeagueGroup;
+import tech.ixirsii.clash.data.war.War;
+import tech.ixirsii.clash.data.war.WarLogEntry;
 import tech.ixirsii.clash.exception.BadRequestException;
 import tech.ixirsii.clash.exception.ClientException;
 import tech.ixirsii.clash.exception.DeserializationException;
@@ -27,6 +35,7 @@ import tech.ixirsii.clash.exception.NotFoundException;
 import tech.ixirsii.clash.exception.RequestException;
 import tech.ixirsii.clash.exception.ServiceUnavailableException;
 import tech.ixirsii.clash.exception.TooManyRequestException;
+import tech.ixirsii.clash.internal.Deserializer;
 
 import java.io.IOException;
 import java.net.URLEncoder;
@@ -49,7 +58,7 @@ public class ClashAPI {
     /**
      * Base URL for Clash of Clans API.
      */
-    private static final String BASE_URL = "https://api.clashofclans.com/v1/";
+    private static final String BASE_URL = "https://api.clashofclans.com/v1";
 
     /**
      * HTTP client.
@@ -77,7 +86,7 @@ public class ClashAPI {
      * Construct a new {@link ClashAPI} with the default mapper.
      *
      * @param client HTTP client.
-     * @param token API token.
+     * @param token  API token.
      */
     public ClashAPI(@NonNull final OkHttpClient client, @NonNull final String token) {
         final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd'T'HHmmss.SSSX");
@@ -104,12 +113,12 @@ public class ClashAPI {
      * Get clan's capital raid seasons.
      *
      * @param clanTag Clan tag.
-     * @param limit (Optional) Result size limit.
-     * @param after (Optional) Get page after key.
-     * @param before (Optional) Get page before key.
+     * @param limit   (Optional) Result size limit.
+     * @param after   (Optional) Get page after key.
+     * @param before  (Optional) Get page before key.
      * @return Clan's capital raid seasons.
      */
-    public Mono<CapitalRaidSeason> capitalRaidSeason(
+    public Mono<Page<CapitalRaidSeason>> capitalRaidSeasons(
             @NonNull final String clanTag,
             final Integer limit,
             final String after,
@@ -118,10 +127,178 @@ public class ClashAPI {
 
         final Map<String, String> queryParameters = getPaginationQueryParameters(limit, after, before);
 
-        return get(
-                "/clans/" + formatTag(clanTag) + "/capitalraidseasons",
-                queryParameters,
-                CapitalRaidSeason.class);
+        return get("/clans/" + formatTag(clanTag) + "/capitalraidseasons", queryParameters, new TypeReference<>() {
+        });
+    }
+
+    /**
+     * Get clan.
+     *
+     * @param clanTag Clan tag.
+     * @return Clan information.
+     */
+    public Mono<Clan> clan(@NonNull final String clanTag) {
+        log.trace("Getting clan {}", clanTag);
+
+        return get("/clans/" + formatTag(clanTag), Clan.class);
+    }
+
+    /**
+     * Search for clans.
+     *
+     * @param name          Clan name.
+     * @param warFrequency  War frequency.
+     * @param locationId    Location ID.
+     * @param minMembers    Minimum number of members.
+     * @param maxMembers    Maximum number of members.
+     * @param minClanPoints Minimum clan points.
+     * @param minClanLevel  Minimum clan level.
+     * @param labelIds      Comma-separated list of label IDs.
+     * @param limit         (Optional) Result size limit.
+     * @param after         (Optional) Get page after key.
+     * @param before        (Optional) Get page before key.
+     * @return Clan search results.
+     */
+    public Mono<Page<Clan>> clans(
+            final String name,
+            final WarFrequency warFrequency,
+            final Integer locationId,
+            final Integer minMembers,
+            final Integer maxMembers,
+            final Integer minClanPoints,
+            final Integer minClanLevel,
+            final String labelIds,
+            final Integer limit,
+            final String after,
+            final String before) {
+        final Map<String, String> queryParameters = HashMap.newHashMap(11);
+
+        if (name != null) {
+            queryParameters.put("name", name);
+        }
+
+        if (warFrequency != null) {
+            queryParameters.put("warFrequency", warFrequency.name());
+        }
+
+        if (locationId != null) {
+            queryParameters.put("locationId", locationId.toString());
+        }
+
+        if (minMembers != null) {
+            queryParameters.put("minMembers", minMembers.toString());
+        }
+
+        if (maxMembers != null) {
+            queryParameters.put("maxMembers", maxMembers.toString());
+        }
+
+        if (minClanPoints != null) {
+            queryParameters.put("minClanPoints", minClanPoints.toString());
+        }
+
+        if (minClanLevel != null) {
+            queryParameters.put("minClanLevel", minClanLevel.toString());
+        }
+
+        if (labelIds != null) {
+            queryParameters.put("labelIds", labelIds);
+        }
+
+        if (limit != null) {
+            queryParameters.put("limit", limit.toString());
+        }
+
+        if (after != null) {
+            queryParameters.put("after", after);
+        }
+
+        if (before != null) {
+            queryParameters.put("before", before);
+        }
+
+        return get("/clans", queryParameters, new TypeReference<>() {
+        });
+    }
+
+    /**
+     * Get clan's current war.
+     *
+     * @param clanTag Clan tag.
+     * @return Clan's current war.
+     */
+    public Mono<War> currentWar(@NonNull final String clanTag) {
+        log.trace("Getting current war for clan {}", clanTag);
+
+        return get("/clans/" + formatTag(clanTag) + "/currentwar", War.class);
+    }
+
+    /**
+     * Get clan's league group.
+     *
+     * @param clanTag Clan tag.
+     * @return Clan's league group.'
+     */
+    public Mono<ClanWarLeagueGroup> leagueGroup(@NonNull final String clanTag) {
+        log.trace("Getting league group for clan {}", clanTag);
+
+        return get("/clans/" + formatTag(clanTag) + "/currentwar/leaguegroup", ClanWarLeagueGroup.class);
+    }
+
+    /**
+     * Get an individual Clan War League war.
+     *
+     * @param warTag War tag.
+     * @return Clan War League war.
+     */
+    public Mono<War> leagueWar(@NonNull final String warTag) {
+        log.trace("Getting league war {}", warTag);
+
+        return get("/clanwarleagues/wars/" + formatTag(warTag), War.class);
+    }
+
+    /**
+     * Get clan members.
+     *
+     * @param clanTag Clan tag.
+     * @param limit   (Optional) Result size limit.
+     * @param after   (Optional) Get page after key.
+     * @param before  (Optional) Get page before key.
+     * @return Clan members.
+     */
+    public Mono<Page<ClanMember>> members(
+            @NonNull final String clanTag,
+            final Integer limit,
+            final String after,
+            final String before) {
+        log.trace("Getting members for clan {}", clanTag);
+
+        final Map<String, String> queryParameters = getPaginationQueryParameters(limit, after, before);
+
+        return get("/clans/" + formatTag(clanTag) + "/members", queryParameters, new TypeReference<>() {
+        });
+    }
+
+    /**
+     * Get clan's war log.
+     *
+     * @param clanTag Clan tag.
+     * @param limit   (Optional) Result size limit.
+     * @param after   (Optional) Get page after key.
+     * @param before  (Optional) Get page before key.
+     * @return War log.
+     */
+    public Mono<Page<WarLogEntry>> warLog(
+            @NonNull final String clanTag,
+            final Integer limit,
+            final String after,
+            final String before) {
+        log.trace("Getting war log for clan {}", clanTag);
+
+        final Map<String, String> queryParameters = getPaginationQueryParameters(limit, after, before);
+
+        return get("/clans/" + formatTag(clanTag) + "/warlog", queryParameters, new TypeReference<>() {
+        });
     }
 
     /* ********************************************************************************************************** *
@@ -145,7 +322,7 @@ public class ClashAPI {
      * ********************************************************************************************************** */
 
     /* ********************************************************************************************************** *
-     *                                          Private utility functions                                         *
+     *                                           Private utility methods                                          *
      * ********************************************************************************************************** */
 
     /**
@@ -209,17 +386,17 @@ public class ClashAPI {
     /**
      * Make a GET request.
      *
-     * @param path API path to append to {@link ClashAPI#BASE_URL}.
+     * @param path            API path to append to {@link ClashAPI#BASE_URL}.
      * @param queryParameters Query parameters.
-     * @param type Response class.
-     * @param <T>  Response type.
+     * @param type            Response class.
+     * @param <T>             Response type.
      * @return API response mono.
      */
     private <T> Mono<T> get(
             @NonNull final String path,
             @NonNull final Map<String, String> queryParameters,
-            @NonNull final Class<T> type) {
-        log.trace("Making GET request: \"{}\" ? {}", path, queryParameters);
+            @NonNull final TypeReference<T> type) {
+        log.trace("Making GET request for type reference: \"{}\" ? {}", path, queryParameters);
 
         final Request.Builder requestBuilder = getBaseRequest(path, queryParameters);
 
@@ -229,7 +406,7 @@ public class ClashAPI {
     /**
      * Get the base request builder.
      *
-     * @param path API path.
+     * @param path            API path.
      * @param queryParameters Query parameters.
      * @return Base request builder.
      */
@@ -246,8 +423,8 @@ public class ClashAPI {
     /**
      * Get pagination query parameters.
      *
-     * @param limit (Optional) Result size limit.
-     * @param after (Optional) Get page after key.
+     * @param limit  (Optional) Result size limit.
+     * @param after  (Optional) Get page after key.
      * @param before (Optional) Get page before key8.
      * @return Pagination query parameters.
      */
@@ -272,7 +449,7 @@ public class ClashAPI {
                 queryParameters.put("before", before);
             }
 
-            return queryParameters;
+            return Collections.unmodifiableMap(queryParameters);
         }
     }
 
@@ -285,6 +462,30 @@ public class ClashAPI {
      * @return API response mono.
      */
     private <T> Mono<T> getResponse(@NonNull final Request request, @NonNull final Class<T> type) {
+        return getResponse(request, body -> mapper.readValue(body, type));
+    }
+
+    /**
+     * Make an API call.
+     *
+     * @param request API request.
+     * @param type    Response class.
+     * @param <T>     Response type.
+     * @return API response mono.
+     */
+    private <T> Mono<T> getResponse(@NonNull final Request request, @NonNull final TypeReference<T> type) {
+        return getResponse(request, body -> mapper.readValue(body, type));
+    }
+
+    /**
+     * Make an API call.
+     *
+     * @param request      API request.
+     * @param deserializer Response body deserializer.
+     * @param <T>          Response type.
+     * @return API response mono.
+     */
+    private <T> Mono<T> getResponse(@NonNull final Request request, @NonNull final Deserializer<T> deserializer) {
         log.trace("Making API request: {} {}", request.method(), request.url());
 
         return Mono.fromCallable(() -> {
@@ -294,23 +495,25 @@ public class ClashAPI {
                 if (response.isSuccessful()) {
                     log.debug("Received successful response");
 
-                    return mapper.readValue(response.body().string(), type);
+                    return deserializer.deserialize(response.body().string());
                 } else {
-                    log.warn("Received error response: {} - \"{}\"", response.code(), response.message());
+                    final int code = response.code();
+
+                    log.warn("Received error response: {} - \"{}\"", code, response.message());
 
                     final ClientError error = mapper.readValue(response.body().string(), ClientError.class);
 
-                    if (response.code() == 400) {
+                    if (code == 400) {
                         throw new BadRequestException("Bad request", error);
-                    } else if (response.code() == 403) {
+                    } else if (code == 403) {
                         throw new ForbiddenException("Forbidden", error);
-                    } else if (response.code() == 404) {
+                    } else if (code == 404) {
                         throw new NotFoundException("Not found", error);
-                    } else if (response.code() == 429) {
+                    } else if (code == 429) {
                         throw new TooManyRequestException("Too many requests", error);
-                    } else if (response.code() == 500) {
+                    } else if (code == 500) {
                         throw new InternalServerErrorException("Internal server error", error);
-                    } else if (response.code() == 503) {
+                    } else if (code == 503) {
                         throw new ServiceUnavailableException("Service unavailable", error);
                     } else {
                         throw new ClientException("Unexpected status code", error);

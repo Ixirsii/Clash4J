@@ -6,8 +6,7 @@ package tech.ixirsii.clash.data;
  * @author Ryan Porterfield
  * @param reason  Error reason.
  * @param message Error message.
- * @param type    Error type.
  * @since 1.0.0
  */
-public record ClientError(String reason, String message, String type) {
+public record ClientError(String reason, String message) {
 }

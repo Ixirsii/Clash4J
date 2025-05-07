@@ -10,7 +10,7 @@ import tech.ixirsii.clash.data.league.League;
  *
  * @author Ryan Porterfield
  * @param builderBaseLeague   Builder base league.
- * @param builderBaseTrophies Builder base trophies.
+ * @param builderBaseTrophies Builder base trophy count.
  * @param clanRank            Clan rank.
  * @param donations           Monthly donations.
  * @param donationsReceived   Monthly donations received.
@@ -23,7 +23,6 @@ import tech.ixirsii.clash.data.league.League;
  * @param tag                 Player tag.
  * @param townHallLevel       Town hall level.
  * @param trophies            Trophy count.
- * @param versusTrophies      Builder base trophy count.
  * @since 1.0.0
  */
 public record ClanMember(
@@ -40,6 +39,5 @@ public record ClanMember(
         Role role,
         String tag,
         int townHallLevel,
-        int trophies,
-        int versusTrophies) {
+        int trophies) {
 }

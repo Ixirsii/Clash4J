@@ -1,0 +1,47 @@
+{
+  "clans": [
+    {
+      "badgeUrls": {
+        "small": "https://api-assets.clashofclans.com/clans/2Q82UJVY/small.png",
+        "medium": "https://api-assets.clashofclans.com/clans/2Q82UJVY/medium.png",
+        "large": "https://api-assets.clashofclans.com/clans/2Q82UJVY/large.png"
+      },
+      "clanLevel": 22,
+      "members": [
+        {
+          "name": "Pew™",
+          "tag": "#GVY298UP",
+          "townHallLevel": 17
+        }
+      ],
+      "name": "midwest warrior",
+      "tag": "#2Q82UJVY"
+    }
+  ],
+  "rounds": [
+    {
+      "warTags": ["#war11", "#war12", "#war13", "#war14"]
+    },
+    {
+      "warTags": ["#war21", "#war22", "#war23", "#war24"]
+    },
+    {
+      "warTags": ["#war31", "#war32", "#war33", "#war34"]
+    },
+    {
+      "warTags": ["#war41", "#war42", "#war43", "#war44"]
+    },
+    {
+      "warTags": ["#war51", "#war52", "#war53", "#war54"]
+    },
+    {
+      "warTags": ["#war61", "#war62", "#war63", "#war64"]
+    },
+    {
+      "warTags": ["#war71", "#war72", "#war73", "#war74"]
+    }
+  ],
+  "season": "2025-01",
+  "state": "ended",
+  "tag": "#LEAGUE"
+}

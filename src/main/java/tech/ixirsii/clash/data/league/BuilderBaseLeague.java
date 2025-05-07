@@ -4,9 +4,9 @@ package tech.ixirsii.clash.data.league;
  * Builder base league.
  *
  * @author Ryan Porterfield
- * @param name League name.
  * @param id   League ID.
+ * @param name League name.
  * @since 1.0.0
  */
-public record BuilderBaseLeague(String name, int id) {
+public record BuilderBaseLeague(int id, String name) {
 }

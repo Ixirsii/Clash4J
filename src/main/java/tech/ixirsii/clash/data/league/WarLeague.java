@@ -4,9 +4,9 @@ package tech.ixirsii.clash.data.league;
  * Clan war league.
  *
  * @author Ryan Porterfield
- * @param name League name.
  * @param id   League ID.
+ * @param name League name.
  * @since 1.0.0
  */
-public record WarLeague(String name, int id) {
+public record WarLeague(int id, String name) {
 }

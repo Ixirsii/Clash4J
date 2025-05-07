@@ -1,0 +1,105 @@
+{
+  "attacksPerMember": 2,
+  "clan": {
+    "attacks": 90,
+    "badgeUrls": {
+      "small": "https://api-assets.clashofclans.com/clans/2Q82UJVY/small.png",
+      "medium": "https://api-assets.clashofclans.com/clans/2Q82UJVY/medium.png",
+      "large": "https://api-assets.clashofclans.com/clans/2Q82UJVY/large.png"
+    },
+    "clanLevel": 22,
+    "destructionPercentage": 100.0,
+    "members": [
+      {
+        "attacks": [
+          {
+            "attackerTag": "#GVY298UP",
+            "defenderTag": "#GVY298UP",
+            "destructionPercentage": 100.0,
+            "duration": 65,
+            "order": 1,
+            "stars": 3
+          },
+          {
+            "attackerTag": "#GVY298UP",
+            "defenderTag": "#GVY298UP",
+            "destructionPercentage": 100.0,
+            "duration": 65,
+            "order": 1,
+            "stars": 3
+          }
+        ],
+        "bestAttack": {
+          "attackerTag": "#GVY298UP",
+          "defenderTag": "#GVY298UP",
+          "destructionPercentage": 100.0,
+          "duration": 65,
+          "order": 1,
+          "stars": 3
+        },
+        "mapPosition": 1,
+        "name": "Pew™",
+        "opponentAttacks": 2,
+        "tag": "#GVY298UP",
+        "townhallLevel": 17
+      }
+    ],
+    "name": "midwest warrior",
+    "stars": 135,
+    "tag": "#2Q82UJVY"
+  },
+  "endTime": "20250103T120000.000Z",
+  "opponent": {
+    "attacks": 90,
+    "badgeUrls": {
+      "small": "https://api-assets.clashofclans.com/clans/2Q82UJVY/small.png",
+      "medium": "https://api-assets.clashofclans.com/clans/2Q82UJVY/medium.png",
+      "large": "https://api-assets.clashofclans.com/clans/2Q82UJVY/large.png"
+    },
+    "clanLevel": 22,
+    "destructionPercentage": 100.0,
+    "members": [
+      {
+        "attacks": [
+          {
+            "attackerTag": "#GVY298UP",
+            "defenderTag": "#GVY298UP",
+            "destructionPercentage": 100.0,
+            "duration": 65,
+            "order": 1,
+            "stars": 3
+          },
+          {
+            "attackerTag": "#GVY298UP",
+            "defenderTag": "#GVY298UP",
+            "destructionPercentage": 100.0,
+            "duration": 65,
+            "order": 1,
+            "stars": 3
+          }
+        ],
+        "bestAttack": {
+          "attackerTag": "#GVY298UP",
+          "defenderTag": "#GVY298UP",
+          "destructionPercentage": 100.0,
+          "duration": 65,
+          "order": 1,
+          "stars": 3
+        },
+        "mapPosition": 1,
+        "name": "Pew™",
+        "opponentAttacks": 2,
+        "tag": "#GVY298UP",
+        "townhallLevel": 17
+      }
+    ],
+    "name": "midwest warrior",
+    "stars": 135,
+    "tag": "#2Q82UJVY"
+  },
+  "preparationStartTime": "20250101T120000.000Z",
+  "startTime": "20250101T110000.000Z",
+  "state": "preparation",
+  "teamSize": 45,
+  "warStartTime": "20250102T120000.000Z"
+}

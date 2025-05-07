@@ -10,20 +10,23 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public enum PlayerHouseElementType {
     /**
+     * Decoration element.
+     */
+    @JsonProperty("decoration")
+    DECORATION,
+    /**
      * Ground element.
      */
+    @JsonProperty("ground")
     GROUND,
     /**
      * Roof element.
      */
+    @JsonProperty("roof")
     ROOF,
     /**
      * Foot element.
      */
-    FOOT,
-    /**
-     * Decoration element.
-     */
-    @JsonProperty("DECO")
-    DECORATION
+    @JsonProperty("walls")
+    WALLS
 }

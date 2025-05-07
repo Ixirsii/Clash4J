@@ -1,0 +1,38 @@
+{
+  "items": [
+    {
+      "attacksPerMember": 2,
+      "clan": {
+        "attacks": 90,
+        "badgeUrls": {
+          "small": "https://api-assets.clashofclans.com/clans/2Q82UJVY/small.png",
+          "medium": "https://api-assets.clashofclans.com/clans/2Q82UJVY/medium.png",
+          "large": "https://api-assets.clashofclans.com/clans/2Q82UJVY/large.png"
+        },
+        "clanLevel": 22,
+        "destructionPercentage": 100.0,
+        "expEarned": 450,
+        "name": "midwest warrior",
+        "stars": 135,
+        "tag": "#2Q82UJVY"
+      },
+      "endTime": "20250103T120000.000Z",
+      "opponent": {
+        "attacks": 90,
+        "badgeUrls": {
+          "small": "https://api-assets.clashofclans.com/clans/2Q82UJVY/small.png",
+          "medium": "https://api-assets.clashofclans.com/clans/2Q82UJVY/medium.png",
+          "large": "https://api-assets.clashofclans.com/clans/2Q82UJVY/large.png"
+        },
+        "clanLevel": 22,
+        "destructionPercentage": 100.0,
+        "expEarned": 450,
+        "name": "midwest warrior",
+        "stars": 135,
+        "tag": "#2Q82UJVY"
+      },
+      "result": "tie",
+      "teamSize": 45
+    }
+  ]
+}

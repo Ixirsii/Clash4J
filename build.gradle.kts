@@ -109,7 +109,7 @@ tasks.jacocoTestReport {
 }
 
 tasks.test {
+    finalizedBy(tasks.jacocoTestReport)
     jvmArgs("-javaagent:${mockitoAgent.asPath}")
-
     useJUnitPlatform()
 }

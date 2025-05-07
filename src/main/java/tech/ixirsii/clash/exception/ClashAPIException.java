@@ -9,7 +9,7 @@ import lombok.NonNull;
  * @since 1.0.0
  */
 public abstract sealed class ClashAPIException extends Exception
-        permits ClientException, DeserializationException, RequestException, TokenException {
+        permits ClientException, DeserializationException, RequestException {
     /**
      * Constructor.
      *

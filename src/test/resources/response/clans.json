@@ -1,0 +1,182 @@
+{
+  "items": [
+    {
+      "badgeUrls": {
+        "small": "https://api-assets.clashofclans.com/clans/2Q82UJVY/small.png",
+        "medium": "https://api-assets.clashofclans.com/clans/2Q82UJVY/medium.png",
+        "large": "https://api-assets.clashofclans.com/clans/2Q82UJVY/large.png"
+      },
+      "capitalLeague": {
+        "id": 85000020,
+        "name": "Titan League II"
+      },
+      "chatLanguage": {
+        "id": 75000000,
+        "name": "English",
+        "languageCode": "EN"
+      },
+      "clanBuilderBasePoints": 34525,
+      "clanCapital": {
+        "capitalHallLevel": 10,
+        "districts": [
+          {
+            "districtHallLevel": 10,
+            "id": 70000000,
+            "name": "Capital Peak"
+          },
+          {
+            "districtHallLevel": 5,
+            "id": 70000001,
+            "name": "Barbarian Camp"
+          },
+          {
+            "districtHallLevel": 5,
+            "id": 70000002,
+            "name": "Wizard Valley"
+          },
+          {
+            "districtHallLevel": 5,
+            "id": 70000003,
+            "name": "Balloon Lagoon"
+          },
+          {
+            "districtHallLevel": 5,
+            "id": 70000004,
+            "name": "Builder's Workshop"
+          },
+          {
+            "districtHallLevel": 5,
+            "id": 70000005,
+            "name": "Dragon Cliffs"
+          },
+          {
+            "districtHallLevel": 5,
+            "id": 70000006,
+            "name": "Golem Quarry"
+          },
+          {
+            "districtHallLevel": 4,
+            "id": 70000007,
+            "name": "Skeleton Park"
+          },
+          {
+            "districtHallLevel": 4,
+            "id": 70000008,
+            "name": "Goblin Mines"
+          }
+        ]
+      },
+      "clanCapitalPoints": 4638,
+      "clanLevel": 22,
+      "clanPoints": 35430,
+      "description": "TH17 graveyard",
+      "isFamilyFriendly": false,
+      "isWarLogPublic": true,
+      "labels": [
+        {
+          "iconUrls": {
+            "medium": "https://api-assets.clashofclans.com/labels/clanwars/medium.png",
+            "small": "https://api-assets.clashofclans.com/labels/clanwars/small.png",
+            "tiny": "https://api-assets.clashofclans.com/labels/clanwars/tiny.png"
+          },
+          "id": 56000000,
+          "name": "Clan Wars"
+        },
+        {
+          "iconUrls": {
+            "medium": "https://api-assets.clashofclans.com/labels/clangames/medium.png",
+            "small": "https://api-assets.clashofclans.com/labels/clangames/small.png",
+            "tiny": "https://api-assets.clashofclans.com/labels/clangames/tiny.png"
+          },
+          "id": 56000004,
+          "name": "Clan Games"
+        },
+        {
+          "iconUrls": {
+            "medium": "https://api-assets.clashofclans.com/labels/clancapital/medium.png",
+            "small": "https://api-assets.clashofclans.com/labels/clancapital/small.png",
+            "tiny": "https://api-assets.clashofclans.com/labels/clancapital/tiny.png"
+          },
+          "id": 56000016,
+          "name": "Clan Capital"
+        }
+      ],
+      "location": {
+        "id": 32000249,
+        "name": "United States",
+        "isCountry": true,
+        "countryCode": "US"
+      },
+      "members": 45,
+      "memberList": [
+        {
+          "builderBaseLeague": {
+            "id": 44000030,
+            "name": "Titanium League II"
+          },
+          "builderBaseTrophies": 4165,
+          "clanRank": 5,
+          "donations": 1336,
+          "donationsReceived": 344,
+          "expLevel": 254,
+          "league": {
+            "iconUrls": {
+              "medium": "https://api-assets.clashofclans.com/leagues/titani/medium.png",
+              "small": "https://api-assets.clashofclans.com/leagues/titani/small.png",
+              "tiny": "https://api-assets.clashofclans.com/leagues/titani/tiny.png"
+            },
+            "id": 29000021,
+            "name": "Titan League I"
+          },
+          "name": "Pew™",
+          "playerHouse": {
+            "elements": [
+              {
+                "type": "ground",
+                "id": 82000004
+              },
+              {
+                "type": "walls",
+                "id": 82000079
+              },
+              {
+                "type": "roof",
+                "id": 82000078
+              },
+              {
+                "type": "decoration",
+                "id": 82000080
+              }
+            ]
+          },
+          "previousClanRank": 5,
+          "role": "coLeader",
+          "tag": "#GVY298UP",
+          "townHallLevel": 17,
+          "trophies": 4768
+        }
+      ],
+      "name": "midwest warrior",
+      "requiredBuilderBaseTrophies": 0,
+      "requiredTownhallLevel": 10,
+      "requiredTrophies": 1000,
+      "tag": "#2Q82UJVY",
+      "type": "inviteOnly",
+      "warFrequency": "moreThanOncePerWeek",
+      "warLeague": {
+        "id": 48000011,
+        "name": "Crystal League II"
+      },
+      "warLosses": 90,
+      "warTies": 2,
+      "warWins": 379,
+      "warWinStreak": 0
+    }
+  ],
+  "paging": {
+    "cursors": {
+      "after": "eyJwb3MiOjV9",
+      "before": "eyJwb3MiOjV9"
+    }
+  }
+}

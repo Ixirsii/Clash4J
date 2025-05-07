@@ -1,0 +1,50 @@
+{
+  "items": [
+    {
+      "builderBaseLeague": {
+        "id": 44000030,
+        "name": "Titanium League II"
+      },
+      "builderBaseTrophies": 4165,
+      "clanRank": 5,
+      "donations": 1336,
+      "donationsReceived": 344,
+      "expLevel": 254,
+      "league": {
+        "iconUrls": {
+          "medium": "https://api-assets.clashofclans.com/leagues/titani/medium.png",
+          "small": "https://api-assets.clashofclans.com/leagues/titani/small.png",
+          "tiny": "https://api-assets.clashofclans.com/leagues/titani/tiny.png"
+        },
+        "id": 29000021,
+        "name": "Titan League I"
+      },
+      "name": "Pew™",
+      "playerHouse": {
+        "elements": [
+          {
+            "type": "ground",
+            "id": 82000004
+          },
+          {
+            "type": "walls",
+            "id": 82000079
+          },
+          {
+            "type": "roof",
+            "id": 82000078
+          },
+          {
+            "type": "decoration",
+            "id": 82000080
+          }
+        ]
+      },
+      "previousClanRank": 5,
+      "role": "coLeader",
+      "tag": "#GVY298UP",
+      "townHallLevel": 17,
+      "trophies": 4768
+    }
+  ]
+}

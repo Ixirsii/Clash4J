@@ -6,10 +6,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * Clan label.
  *
  * @author Ryan Porterfield
+ * @param iconURL Label icons.
  * @param id      Label ID.
  * @param name    Label name.
- * @param iconURL Label icons.
  * @since 1.0.0
  */
-public record Label(int id, String name, @JsonProperty("iconUrls") IconURL iconURL) {
+public record Label(@JsonProperty("iconUrls") IconURL iconURL, int id, String name) {
 }

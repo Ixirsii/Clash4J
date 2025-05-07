@@ -27,7 +27,6 @@ import tech.ixirsii.clash.exception.NotFoundException;
 import tech.ixirsii.clash.exception.RequestException;
 import tech.ixirsii.clash.exception.ServiceUnavailableException;
 import tech.ixirsii.clash.exception.TooManyRequestException;
-import tech.ixirsii.clash.internal.APICookieJar;
 
 import java.io.IOException;
 import java.net.URLEncoder;
@@ -71,7 +70,7 @@ public class ClashAPI {
      * @param token API token.
      */
     public ClashAPI(@NonNull final String token) {
-        this(new OkHttpClient.Builder().cookieJar(new APICookieJar()).build(), token);
+        this(new OkHttpClient(), token);
     }
 
     /**

@@ -1,6 +1,8 @@
 package tech.ixirsii.clash.data.clan;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonValue;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
 /**
  * Clan war frequency.
@@ -8,40 +10,41 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * @author Ryan Porterfield
  * @since 1.0.0
  */
+@Getter
+@RequiredArgsConstructor
 public enum WarFrequency {
     /**
      * Always.
      */
-    @JsonProperty("always")
-    ALWAYS,
+    ALWAYS("always"),
     /**
      * Any war frequency.
      */
-    @JsonProperty("any")
-    ANY,
+    ANY("any"),
     /**
      * More than once per week.
      */
-    @JsonProperty("moreThanOncePerWeek")
-    MORE_THAN_ONCE_PER_WEEK,
+    MORE_THAN_ONCE_PER_WEEK("moreThanOncePerWeek"),
     /**
      * Once per week.
      */
-    @JsonProperty("oncePerWeek")
-    ONCE_PER_WEEK,
+    ONCE_PER_WEEK("oncePerWeek"),
     /**
      * Less than once per week.
      */
-    @JsonProperty("lessThanOncePerWeek")
-    LESS_THAN_ONCE_PER_WEEK,
+    LESS_THAN_ONCE_PER_WEEK("lessThanOncePerWeek"),
     /**
      * Never.
      */
-    @JsonProperty("never")
-    NEVER,
+    NEVER("never"),
     /**
      * Unknown frequency.
      */
-    @JsonProperty("unknown")
-    UNKNOWN
+    UNKNOWN("unknown");
+
+    /**
+     * API value.
+     */
+    @JsonValue
+    private final String value;
 }

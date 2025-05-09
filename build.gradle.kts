@@ -108,8 +108,20 @@ tasks.jacocoTestReport {
     }
 }
 
+tasks.register<Test>("integrationTest") {
+    description = "Run integration tests."
+    group = "verification"
+
+    jvmArgs("-javaagent:${mockitoAgent.asPath}")
+    useJUnitPlatform() {
+        includeTags("integration")
+    }
+}
+
 tasks.test {
     finalizedBy(tasks.jacocoTestReport)
     jvmArgs("-javaagent:${mockitoAgent.asPath}")
-    useJUnitPlatform()
+    useJUnitPlatform() {
+        excludeTags("integration")
+    }
 }

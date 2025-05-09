@@ -2,6 +2,7 @@ package tech.ixirsii.clash;
 
 import lombok.NonNull;
 import tech.ixirsii.clash.data.BadgeURL;
+import tech.ixirsii.clash.data.BattleModifier;
 import tech.ixirsii.clash.data.ClientError;
 import tech.ixirsii.clash.data.IconURL;
 import tech.ixirsii.clash.data.Label;
@@ -32,6 +33,7 @@ import tech.ixirsii.clash.data.league.ClanWarLeagueGroup;
 import tech.ixirsii.clash.data.league.ClanWarLeagueMember;
 import tech.ixirsii.clash.data.league.ClanWarLeagueRound;
 import tech.ixirsii.clash.data.league.ClanWarLeagueState;
+import tech.ixirsii.clash.data.league.ClanWarLeagueWar;
 import tech.ixirsii.clash.data.league.League;
 import tech.ixirsii.clash.data.league.WarLeague;
 import tech.ixirsii.clash.data.war.Result;
@@ -527,7 +529,7 @@ public final class TestData {
             "#LEAGUE");
     public static final WarAttack WAR_ATTACK = new WarAttack(PLAYER_TAG, PLAYER_TAG, 100, 65, 1, 3);
     public static final WarClan WAR_CLAN = new WarClan(
-            90,
+            30,
             BADGE_URL,
             22,
             100,
@@ -541,8 +543,17 @@ public final class TestData {
                             PLAYER_TAG,
                             17)),
             CLAN_NAME,
-            135,
+            90,
             CLAN_TAG);
+    public static final ClanWarLeagueWar LEAGUE_WAR = new ClanWarLeagueWar(
+            WAR_CLAN,
+            ZonedDateTime.of(2025, 1, 3, 12, 0, 0, 0, ZoneOffset.UTC),
+            WAR_CLAN,
+            ZonedDateTime.of(2025, 1, 1, 12, 0, 0, 0, ZoneOffset.UTC),
+            ZonedDateTime.of(2025, 1, 1, 11, 0, 0, 0, ZoneOffset.UTC),
+            ClanWarLeagueState.WAR,
+            30,
+            ZonedDateTime.of(2025, 1, 2, 12, 0, 0, 0, ZoneOffset.UTC));
     public static final War WAR = new War(
             2,
             WAR_CLAN,
@@ -564,6 +575,7 @@ public final class TestData {
             CLAN_TAG);
     public static final WarLogEntry WAR_LOG = new WarLogEntry(
             2,
+            BattleModifier.NONE,
             WAR_LOG_CLAN,
             ZonedDateTime.of(2025, 1, 3, 12, 0, 0, 0, ZoneOffset.UTC),
             WAR_LOG_CLAN,

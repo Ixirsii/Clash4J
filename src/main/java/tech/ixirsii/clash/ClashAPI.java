@@ -24,6 +24,7 @@ import tech.ixirsii.clash.data.clan.Clan;
 import tech.ixirsii.clash.data.clan.ClanMember;
 import tech.ixirsii.clash.data.clan.WarFrequency;
 import tech.ixirsii.clash.data.league.ClanWarLeagueGroup;
+import tech.ixirsii.clash.data.league.ClanWarLeagueWar;
 import tech.ixirsii.clash.data.war.War;
 import tech.ixirsii.clash.data.war.WarLogEntry;
 import tech.ixirsii.clash.exception.BadRequestException;
@@ -178,7 +179,7 @@ public class ClashAPI {
         }
 
         if (warFrequency != null) {
-            queryParameters.put("warFrequency", warFrequency.name());
+            queryParameters.put("warFrequency", warFrequency.getValue());
         }
 
         if (locationId != null) {
@@ -251,10 +252,10 @@ public class ClashAPI {
      * @param warTag War tag.
      * @return Clan War League war.
      */
-    public Mono<War> leagueWar(@NonNull final String warTag) {
+    public Mono<ClanWarLeagueWar> leagueWar(@NonNull final String warTag) {
         log.trace("Getting league war {}", warTag);
 
-        return get("/clanwarleagues/wars/" + formatTag(warTag), War.class);
+        return get("/clanwarleagues/wars/" + formatTag(warTag), ClanWarLeagueWar.class);
     }
 
     /**

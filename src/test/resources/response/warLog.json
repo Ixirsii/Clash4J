@@ -2,6 +2,7 @@
   "items": [
     {
       "attacksPerMember": 2,
+      "battleModifier": "none",
       "clan": {
         "attacks": 90,
         "badgeUrls": {

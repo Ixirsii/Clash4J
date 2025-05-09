@@ -1,5 +1,4 @@
 {
-  "attacksPerMember": 2,
   "clan": {
     "attacks": 30,
     "badgeUrls": {
@@ -99,7 +98,7 @@
   },
   "preparationStartTime": "20250101T120000.000Z",
   "startTime": "20250101T110000.000Z",
-  "state": "preparation",
-  "teamSize": 45,
+  "state": "inWar",
+  "teamSize": 30,
   "warStartTime": "20250102T120000.000Z"
 }

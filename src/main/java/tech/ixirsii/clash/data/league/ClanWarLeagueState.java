@@ -32,6 +32,6 @@ public enum ClanWarLeagueState {
     /**
      * Ended.
      */
-    @JsonProperty("ended")
+    @JsonProperty("warEnded")
     ENDED
 }

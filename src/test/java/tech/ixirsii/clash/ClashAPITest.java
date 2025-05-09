@@ -19,6 +19,7 @@ import tech.ixirsii.clash.data.clan.Clan;
 import tech.ixirsii.clash.data.clan.ClanMember;
 import tech.ixirsii.clash.data.clan.WarFrequency;
 import tech.ixirsii.clash.data.league.ClanWarLeagueGroup;
+import tech.ixirsii.clash.data.league.ClanWarLeagueWar;
 import tech.ixirsii.clash.data.war.War;
 import tech.ixirsii.clash.data.war.WarLogEntry;
 import tech.ixirsii.clash.exception.BadRequestException;
@@ -55,6 +56,7 @@ import static tech.ixirsii.clash.TestData.CLAN_TAG;
 import static tech.ixirsii.clash.TestData.FORBIDDEN_ERROR;
 import static tech.ixirsii.clash.TestData.INTERNAL_SERVER_ERROR;
 import static tech.ixirsii.clash.TestData.LEAGUE_GROUP;
+import static tech.ixirsii.clash.TestData.LEAGUE_WAR;
 import static tech.ixirsii.clash.TestData.METHOD_NOT_ALLOWED;
 import static tech.ixirsii.clash.TestData.NOT_FOUND_ERROR;
 import static tech.ixirsii.clash.TestData.SERVICE_UNAVAILABLE_ERROR;
@@ -100,60 +102,6 @@ class ClashAPITest {
 
         // When
         final Page<CapitalRaidSeason> actual = api.capitalRaidSeasons(CLAN_TAG, null, null, null).block();
-
-        // Then
-        verifyResponse();
-
-        assertEquals(
-                new Page<>(List.of(CAPITAL_RAID_SEASON), null),
-                actual,
-                "Capital raid seasons should equal expected");
-    }
-
-    @Test
-    void GIVEN_limit_WHEN_capitalRaidSeasons_THEN_returns_capital_raid_seasons()
-            throws IOException, URISyntaxException {
-        // Given
-        mockResponse("/response/capitalRaidSeason.json");
-
-        // When
-        final Page<CapitalRaidSeason> actual = api.capitalRaidSeasons(CLAN_TAG, 5, null, null).block();
-
-        // Then
-        verifyResponse();
-
-        assertEquals(
-                new Page<>(List.of(CAPITAL_RAID_SEASON), null),
-                actual,
-                "Capital raid seasons should equal expected");
-    }
-
-    @Test
-    void GIVEN_after_WHEN_capitalRaidSeasons_THEN_returns_capital_raid_seasons()
-            throws IOException, URISyntaxException {
-        // Given
-        mockResponse("/response/capitalRaidSeason.json");
-
-        // When
-        final Page<CapitalRaidSeason> actual = api.capitalRaidSeasons(CLAN_TAG, null, "eyJwb3MiOjV9", null).block();
-
-        // Then
-        verifyResponse();
-
-        assertEquals(
-                new Page<>(List.of(CAPITAL_RAID_SEASON), null),
-                actual,
-                "Capital raid seasons should equal expected");
-    }
-
-    @Test
-    void GIVEN_before_WHEN_capitalRaidSeasons_THEN_returns_capital_raid_seasons()
-            throws IOException, URISyntaxException {
-        // Given
-        mockResponse("/response/capitalRaidSeason.json");
-
-        // When
-        final Page<CapitalRaidSeason> actual = api.capitalRaidSeasons(CLAN_TAG, null, null, "eyJwb3MiOjV9").block();
 
         // Then
         verifyResponse();
@@ -269,17 +217,17 @@ class ClashAPITest {
     }
 
     @Test
-    void GIVEN_clan_tag_WHEN_leagueWar_THEN_returns_leagueWar() throws IOException, URISyntaxException {
+    void GIVEN_war_tag_WHEN_leagueWar_THEN_returns_leagueWar() throws IOException, URISyntaxException {
         // Given
-        mockResponse("/response/war.json");
+        mockResponse("/response/leagueWar.json");
 
         // When
-        final War actual = api.leagueWar(CLAN_TAG).block();
+        final ClanWarLeagueWar actual = api.leagueWar(CLAN_TAG).block();
 
         // Then
         verifyResponse();
 
-        assertEquals(WAR, actual, "Clan should equal expected");
+        assertEquals(LEAGUE_WAR, actual, "Clan should equal expected");
     }
 
     @Test
@@ -301,7 +249,7 @@ class ClashAPITest {
     }
 
     @Test
-    void GIVEN_clan_tag_WHEN_warLog_THEN_returns_members()
+    void GIVEN_clan_tag_WHEN_warLog_THEN_returns_war_logs()
             throws IOException, URISyntaxException {
         // Given
         mockResponse("/response/warLog.json");
@@ -314,6 +262,72 @@ class ClashAPITest {
 
         assertEquals(
                 new Page<>(List.of(WAR_LOG), null),
+                actual,
+                "Capital raid seasons should equal expected");
+    }
+
+    /* ********************************************** Player APIs *********************************************** */
+
+    /* ********************************************** League APIs *********************************************** */
+
+    /* ********************************************* Location APIs ********************************************** */
+
+    /* ********************************************* Gold Pass APIs ********************************************* */
+
+    /* *********************************************** Label APIs *********************************************** */
+
+    /* ************************************************* Paging ************************************************* */
+
+    @Test
+    void GIVEN_limit_WHEN_capitalRaidSeasons_THEN_returns_capital_raid_seasons()
+            throws IOException, URISyntaxException {
+        // Given
+        mockResponse("/response/capitalRaidSeason.json");
+
+        // When
+        final Page<CapitalRaidSeason> actual = api.capitalRaidSeasons(CLAN_TAG, 5, null, null).block();
+
+        // Then
+        verifyResponse();
+
+        assertEquals(
+                new Page<>(List.of(CAPITAL_RAID_SEASON), null),
+                actual,
+                "Capital raid seasons should equal expected");
+    }
+
+    @Test
+    void GIVEN_after_WHEN_capitalRaidSeasons_THEN_returns_capital_raid_seasons()
+            throws IOException, URISyntaxException {
+        // Given
+        mockResponse("/response/capitalRaidSeason.json");
+
+        // When
+        final Page<CapitalRaidSeason> actual = api.capitalRaidSeasons(CLAN_TAG, null, "eyJwb3MiOjV9", null).block();
+
+        // Then
+        verifyResponse();
+
+        assertEquals(
+                new Page<>(List.of(CAPITAL_RAID_SEASON), null),
+                actual,
+                "Capital raid seasons should equal expected");
+    }
+
+    @Test
+    void GIVEN_before_WHEN_capitalRaidSeasons_THEN_returns_capital_raid_seasons()
+            throws IOException, URISyntaxException {
+        // Given
+        mockResponse("/response/capitalRaidSeason.json");
+
+        // When
+        final Page<CapitalRaidSeason> actual = api.capitalRaidSeasons(CLAN_TAG, null, null, "eyJwb3MiOjV9").block();
+
+        // Then
+        verifyResponse();
+
+        assertEquals(
+                new Page<>(List.of(CAPITAL_RAID_SEASON), null),
                 actual,
                 "Capital raid seasons should equal expected");
     }

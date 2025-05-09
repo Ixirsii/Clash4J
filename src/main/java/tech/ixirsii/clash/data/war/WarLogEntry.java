@@ -1,5 +1,7 @@
 package tech.ixirsii.clash.data.war;
 
+import tech.ixirsii.clash.data.BattleModifier;
+
 import java.time.ZonedDateTime;
 
 /**
@@ -7,6 +9,7 @@ import java.time.ZonedDateTime;
  *
  * @author Ryan Porterfield
  * @param attacksPerMember Number of attacks per member.
+ * @param battleModifier   Battle modifier.
  * @param clan             Clan.
  * @param endTime          End time.
  * @param opponent         Opponent.
@@ -16,6 +19,7 @@ import java.time.ZonedDateTime;
  */
 public record WarLogEntry(
         int attacksPerMember,
+        BattleModifier battleModifier,
         WarLogClan clan,
         ZonedDateTime endTime,
         WarLogClan opponent,

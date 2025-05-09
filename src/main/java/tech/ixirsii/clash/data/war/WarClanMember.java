@@ -8,18 +8,18 @@ import java.util.List;
  * War clan member.
  *
  * @author Ryan Porterfield
- * @param attacks         War attacks.
- * @param bestAttack      Best war attack.
- * @param mapPosition     Map position.
- * @param name            Player name.
- * @param opponentAttacks Opponent attacks.
- * @param tag             Player tag.
- * @param townHallLevel   Town hall level.
+ * @param attacks            War attacks.
+ * @param bestOpponentAttack Best attack against the member.
+ * @param mapPosition        Map position.
+ * @param name               Player name.
+ * @param opponentAttacks    Opponent attacks.
+ * @param tag                Player tag.
+ * @param townHallLevel      Town hall level.
  * @since 1.0.0
  */
 public record WarClanMember(
         List<WarAttack> attacks,
-        WarAttack bestAttack,
+        WarAttack bestOpponentAttack,
         int mapPosition,
         String name,
         int opponentAttacks,

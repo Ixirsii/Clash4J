@@ -1,0 +1,145 @@
+{
+  "achievements": [
+    {
+      "completionInfo": "Highest Gold Storage level: 17",
+      "info": "Upgrade a Gold Storage to level 10",
+      "name": "Bigger Coffers",
+      "stars": 3,
+      "target": 10,
+      "value": 17,
+      "village": "home"
+    }
+  ],
+  "attackWins": 0,
+  "bestBuilderBaseTrophies": 5093,
+  "bestTrophies": 5839,
+  "builderBaseLeague": {
+    "id": 44000034,
+    "name": "Platinum League I"
+  },
+  "builderBaseTrophies": 4840,
+  "builderHallLevel": 10,
+  "clan": {
+    "badgeUrls": {
+      "small": "https://api-assets.clashofclans.com/clans/2Q82UJVY/small.png",
+      "medium": "https://api-assets.clashofclans.com/clans/2Q82UJVY/medium.png",
+      "large": "https://api-assets.clashofclans.com/clans/2Q82UJVY/large.png"
+    },
+    "clanLevel": 22,
+    "name": "midwest warrior",
+    "tag": "#2Q82UJVY"
+  },
+  "clanCapitalContributions": 2997889,
+  "defenseWins": 0,
+  "donations": 0,
+  "donationsReceived": 0,
+  "expLevel": 241,
+  "heroes": [
+    {
+      "equipment": [
+        {
+          "level": 27,
+          "maxLevel": 27,
+          "name": "Giant Gauntlet",
+          "village": "home"
+        }
+      ],
+      "level": 95,
+      "maxLevel": 100,
+      "name": "Barbarian King",
+      "village": "home"
+    }
+  ],
+  "heroEquipment": [
+    {
+      "level": 27,
+      "maxLevel": 27,
+      "name": "Giant Gauntlet",
+      "village": "home"
+    }
+  ],
+  "labels": [
+    {
+      "iconUrls": {
+        "medium": "https://api-assets.clashofclans.com/labels/clanwars/medium.png",
+        "small": "https://api-assets.clashofclans.com/labels/clanwars/small.png",
+        "tiny": "https://api-assets.clashofclans.com/labels/clanwars/tiny.png"
+      },
+      "id": 57000000,
+      "name": "Clan Wars"
+    },
+    {
+      "iconUrls": {
+        "medium": "https://api-assets.clashofclans.com/labels/clanwarleague/medium.png",
+        "small": "https://api-assets.clashofclans.com/labels/clanwarleague/small.png",
+        "tiny": "https://api-assets.clashofclans.com/labels/clanwarleague/tiny.png"
+      },
+      "id": 57000001,
+      "name": "Clan War League"
+    },
+    {
+      "iconUrls": {
+        "medium": "https://api-assets.clashofclans.com/labels/competitive/medium.png",
+        "small": "https://api-assets.clashofclans.com/labels/competitive/small.png",
+        "tiny": "https://api-assets.clashofclans.com/labels/competitive/tiny.png"
+      },
+      "id": 57000014,
+      "name": "Competitive"
+    }
+  ],
+  "legendStatistics": {
+    "bestSeason": {
+      "id": "2023-06",
+      "rank": 281168,
+      "trophies": 5263
+    },
+    "currentSeason": {
+      "trophies": 2923
+    },
+    "legendTrophies": 690
+  },
+  "name": "Ixirsii",
+  "playerHouse": {
+    "elements": [
+      {
+        "type": "ground",
+        "id": 82000001
+      },
+      {
+        "type": "walls",
+        "id": 82000049
+      },
+      {
+        "type": "roof",
+        "id": 82000016
+      },
+      {
+        "type": "decoration",
+        "id": 82000060
+      }
+    ]
+  },
+  "role": "member",
+  "spells": [
+    {
+      "name": "Lightning Spell",
+      "level": 11,
+      "maxLevel": 12,
+      "village": "home"
+    }
+  ],
+  "tag": "#2Q09RPGL8",
+  "townHallLevel": 16,
+  "townHallWeaponLevel": 1,
+  "troops": [
+    {
+      "level": 12,
+      "maxLevel": 12,
+      "name": "Barbarian",
+      "village": "home"
+    }
+  ],
+  "trophies": 2923,
+  "warPreference": "in",
+  "warStars": 1978
+}

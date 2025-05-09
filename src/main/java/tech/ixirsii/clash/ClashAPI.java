@@ -12,6 +12,7 @@ import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.Call;
+import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
@@ -25,6 +26,8 @@ import tech.ixirsii.clash.data.clan.ClanMember;
 import tech.ixirsii.clash.data.clan.WarFrequency;
 import tech.ixirsii.clash.data.league.ClanWarLeagueGroup;
 import tech.ixirsii.clash.data.league.ClanWarLeagueWar;
+import tech.ixirsii.clash.data.player.Player;
+import tech.ixirsii.clash.data.player.TokenResponse;
 import tech.ixirsii.clash.data.war.War;
 import tech.ixirsii.clash.data.war.WarLogEntry;
 import tech.ixirsii.clash.exception.BadRequestException;
@@ -305,6 +308,35 @@ public class ClashAPI {
     /* ********************************************************************************************************** *
      *                                                 Player APIs                                                *
      * ********************************************************************************************************** */
+
+    /**
+     * Get player.
+     *
+     * @param playerTag Player tag.
+     * @return Player information.
+     */
+    public Mono<Player> player(@NonNull final String playerTag) {
+        log.trace("Getting player {}", playerTag);
+
+        return get("/players/" + formatTag(playerTag), Player.class);
+    }
+
+    /**
+     * Verify player API token.
+     *
+     * @param playerTag Player tag.
+     * @param token API token.
+     * @return {@code true} if the token is valid, otherwise {@code false}.
+     */
+    public Mono<Boolean> verifyPlayer(@NonNull final String playerTag, @NonNull final String token) {
+        log.trace("Verifying player {}", playerTag);
+
+        final MediaType mediaType = MediaType.parse("application/json; charset=utf-8");
+        final RequestBody body = RequestBody.create(mediaType, "{\"token\":\"" + token + "\"}");
+
+        return post("/players/" + formatTag(playerTag) + "/verifytoken", body, TokenResponse.class)
+                .map(response -> response.status().equals("ok"));
+    }
 
     /* ********************************************************************************************************** *
      *                                                 League APIs                                                *

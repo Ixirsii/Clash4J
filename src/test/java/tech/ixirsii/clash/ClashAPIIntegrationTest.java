@@ -10,18 +10,25 @@ import tech.ixirsii.clash.data.clan.ClanMember;
 import tech.ixirsii.clash.data.clan.WarFrequency;
 import tech.ixirsii.clash.data.league.ClanWarLeagueGroup;
 import tech.ixirsii.clash.data.league.ClanWarLeagueWar;
+import tech.ixirsii.clash.data.player.Player;
 import tech.ixirsii.clash.data.war.War;
 import tech.ixirsii.clash.data.war.WarLogEntry;
 import tech.ixirsii.clash.exception.BadRequestException;
 import tech.ixirsii.clash.exception.DeserializationException;
 import tech.ixirsii.clash.exception.NotFoundException;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static tech.ixirsii.clash.TestData.CLAN_TAG;
+import static tech.ixirsii.clash.TestData.PLAYER;
+import static tech.ixirsii.clash.TestData.PLAYER_TAG;
 
 @Tag("integration")
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -342,6 +349,15 @@ class ClashAPIIntegrationTest {
     }
 
     /* ********************************************** Player APIs *********************************************** */
+
+    @Test
+    void GIVEN_player_tag_WHEN_player_THEN_returns_player() {
+        // When
+        final Player actual = api.player(PLAYER_TAG).block();
+
+        // Then
+        assertNotNull(actual, "Response should not be null");
+    }
 
     /* ********************************************** League APIs *********************************************** */
 

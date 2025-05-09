@@ -7,6 +7,7 @@ import tech.ixirsii.clash.data.ClientError;
 import tech.ixirsii.clash.data.IconURL;
 import tech.ixirsii.clash.data.Label;
 import tech.ixirsii.clash.data.Role;
+import tech.ixirsii.clash.data.Village;
 import tech.ixirsii.clash.data.capital.CapitalRaidSeason;
 import tech.ixirsii.clash.data.capital.CapitalRaidSeasonAttack;
 import tech.ixirsii.clash.data.capital.CapitalRaidSeasonAttackLog;
@@ -36,6 +37,15 @@ import tech.ixirsii.clash.data.league.ClanWarLeagueState;
 import tech.ixirsii.clash.data.league.ClanWarLeagueWar;
 import tech.ixirsii.clash.data.league.League;
 import tech.ixirsii.clash.data.league.WarLeague;
+import tech.ixirsii.clash.data.player.AchievementProgress;
+import tech.ixirsii.clash.data.player.HeroEquipment;
+import tech.ixirsii.clash.data.player.ItemLevel;
+import tech.ixirsii.clash.data.player.LegendLeagueTournamentSeasonResult;
+import tech.ixirsii.clash.data.player.LegendStatistics;
+import tech.ixirsii.clash.data.player.Player;
+import tech.ixirsii.clash.data.player.PlayerClan;
+import tech.ixirsii.clash.data.player.TokenResponse;
+import tech.ixirsii.clash.data.player.WarPreference;
 import tech.ixirsii.clash.data.war.Result;
 import tech.ixirsii.clash.data.war.State;
 import tech.ixirsii.clash.data.war.War;
@@ -581,6 +591,83 @@ public final class TestData {
             WAR_LOG_CLAN,
             Result.TIE,
             45);
+
+    public static final HeroEquipment GIANT_GAUNTLET = new HeroEquipment(
+            27,
+            27,
+            "Giant Gauntlet",
+            Village.HOME);
+    public static final Player PLAYER = new Player(
+            List.of(new AchievementProgress(
+                    "Highest Gold Storage level: 17",
+                    "Upgrade a Gold Storage to level 10",
+                    "Bigger Coffers",
+                    3,
+                    10,
+                    17,
+                    Village.HOME)),
+            0,
+            5093,
+            5839,
+            new BuilderBaseLeague(44000034, "Platinum League I"),
+            4840,
+            10,
+            new PlayerClan(BADGE_URL, 22, CLAN_NAME, CLAN_TAG),
+            2997889,
+            0,
+            0,
+            0,
+            241,
+            List.of(new ItemLevel(
+                    List.of(GIANT_GAUNTLET),
+                    95,
+                    100,
+                    "Barbarian King",
+                    false,
+                    Village.HOME)),
+            List.of(GIANT_GAUNTLET),
+            List.of(
+                    new Label(new IconURL(
+                            getURL("https://api-assets.clashofclans.com/labels/clanwars/medium.png"),
+                            getURL("https://api-assets.clashofclans.com/labels/clanwars/small.png"),
+                            getURL("https://api-assets.clashofclans.com/labels/clanwars/tiny.png")),
+                            57000000,
+                            "Clan Wars"),
+                    new Label(new IconURL(
+                            getURL("https://api-assets.clashofclans.com/labels/clanwarleague/medium.png"),
+                            getURL("https://api-assets.clashofclans.com/labels/clanwarleague/small.png"),
+                            getURL("https://api-assets.clashofclans.com/labels/clanwarleague/tiny.png")),
+                            57000001,
+                            "Clan War League"),
+                    new Label(new IconURL(
+                            getURL("https://api-assets.clashofclans.com/labels/competitive/medium.png"),
+                            getURL("https://api-assets.clashofclans.com/labels/competitive/small.png"),
+                            getURL("https://api-assets.clashofclans.com/labels/competitive/tiny.png")),
+                            57000014,
+                            "Competitive")),
+            null,
+            new LegendStatistics(
+                    null,
+                    new LegendLeagueTournamentSeasonResult("2023-06", 281168, 5263),
+                    new LegendLeagueTournamentSeasonResult(null, null, 2923),
+                    690,
+                    null,
+                    null),
+            "Ixirsii",
+            new PlayerHouse(List.of(
+                    new PlayerHouseElement(82000001, PlayerHouseElementType.GROUND),
+                    new PlayerHouseElement(82000049, PlayerHouseElementType.WALLS),
+                    new PlayerHouseElement(82000016, PlayerHouseElementType.ROOF),
+                    new PlayerHouseElement(82000060, PlayerHouseElementType.DECORATION))),
+            Role.MEMBER,
+            List.of(new ItemLevel(null, 11, 12, "Lightning Spell", false, Village.HOME)),
+            "#2Q09RPGL8",
+            16,
+            1,
+            List.of(new ItemLevel(null, 12, 12, "Barbarian", false, Village.HOME)),
+            2923,
+            WarPreference.IN,
+            1978);
 
     /**
      * Hide utility class constructor.

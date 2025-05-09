@@ -20,6 +20,7 @@ import tech.ixirsii.clash.data.clan.ClanMember;
 import tech.ixirsii.clash.data.clan.WarFrequency;
 import tech.ixirsii.clash.data.league.ClanWarLeagueGroup;
 import tech.ixirsii.clash.data.league.ClanWarLeagueWar;
+import tech.ixirsii.clash.data.player.Player;
 import tech.ixirsii.clash.data.war.War;
 import tech.ixirsii.clash.data.war.WarLogEntry;
 import tech.ixirsii.clash.exception.BadRequestException;
@@ -42,6 +43,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
@@ -59,6 +61,8 @@ import static tech.ixirsii.clash.TestData.LEAGUE_GROUP;
 import static tech.ixirsii.clash.TestData.LEAGUE_WAR;
 import static tech.ixirsii.clash.TestData.METHOD_NOT_ALLOWED;
 import static tech.ixirsii.clash.TestData.NOT_FOUND_ERROR;
+import static tech.ixirsii.clash.TestData.PLAYER;
+import static tech.ixirsii.clash.TestData.PLAYER_TAG;
 import static tech.ixirsii.clash.TestData.SERVICE_UNAVAILABLE_ERROR;
 import static tech.ixirsii.clash.TestData.TOO_MANY_REQUESTS_ERROR;
 import static tech.ixirsii.clash.TestData.WAR;
@@ -267,6 +271,34 @@ class ClashAPITest {
     }
 
     /* ********************************************** Player APIs *********************************************** */
+
+    @Test
+    void GIVEN_player_tag_WHEN_player_THEN_returns_player() throws IOException, URISyntaxException {
+        // Given
+        mockResponse("/response/player.json");
+
+        // When
+        final Player actual = api.player(PLAYER_TAG).block();
+
+        // Then
+        verifyResponse();
+
+        assertEquals(PLAYER, actual, "Player should equal expected");
+    }
+
+    @Test
+    void GIVEN_token_WHEN_verifyPlayer_THEN_returns_player() throws IOException, URISyntaxException {
+        // Given
+        mockResponse("/response/verifyPlayer.json");
+
+        // When
+        final boolean actual = api.verifyPlayer(PLAYER_TAG, "token").block();
+
+        // Then
+        verifyResponse();
+
+        assertTrue(actual, "Player should be verified");
+    }
 
     /* ********************************************** League APIs *********************************************** */
 

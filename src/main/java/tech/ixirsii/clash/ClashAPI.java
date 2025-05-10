@@ -24,6 +24,7 @@ import tech.ixirsii.clash.data.capital.CapitalRaidSeason;
 import tech.ixirsii.clash.data.clan.Clan;
 import tech.ixirsii.clash.data.clan.ClanMember;
 import tech.ixirsii.clash.data.clan.WarFrequency;
+import tech.ixirsii.clash.data.league.BuilderBaseLeague;
 import tech.ixirsii.clash.data.league.ClanWarLeagueGroup;
 import tech.ixirsii.clash.data.league.ClanWarLeagueWar;
 import tech.ixirsii.clash.data.player.Player;
@@ -341,6 +342,38 @@ public class ClashAPI {
     /* ********************************************************************************************************** *
      *                                                 League APIs                                                *
      * ********************************************************************************************************** */
+
+    /**
+     * Get builder base league.
+     *
+     * @param leagueID League ID.
+     * @return Builder base league information.
+     */
+    public Mono<BuilderBaseLeague> builderBaseLeague(@NonNull final String leagueID) {
+        log.trace("Getting builder base league {}", leagueID);
+
+        return get("/builderbaseleagues/" + leagueID, BuilderBaseLeague.class);
+    }
+
+    /**
+     * Get builder base leagues.
+     *
+     * @param limit  (Optional) Result size limit.
+     * @param after  (Optional) Get page after key.
+     * @param before (Optional) Get page before key.
+     * @return Builder base leagues.
+     */
+    public Mono<Page<BuilderBaseLeague>> builderBaseLeagues(
+            final Integer limit,
+            final String after,
+            final String before) {
+        log.trace("Getting builder base leagues");
+
+        final Map<String, String> queryParameters = getPaginationQueryParameters(limit, after, before);
+
+        return get("/builderbaseleagues", queryParameters, new TypeReference<>() {
+        });
+    }
 
     /* ********************************************************************************************************** *
      *                                               Location APIs                                                *

@@ -2,6 +2,8 @@ plugins {
     id("java-library")
     id("checkstyle")
     id("jacoco")
+    id("maven-publish")
+    id("signing")
 
     alias(libs.plugins.axion)
     alias(libs.plugins.lombok)
@@ -47,6 +49,72 @@ java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(21)
     }
+}
+
+nexusPublishing {
+    val sonatypeUsername: String? by project
+    val sonatypePassword: String? by project
+
+    repositories {
+        sonatype {
+            nexusUrl = uri("https://s01.oss.sonatype.org/service/local/")
+            snapshotRepositoryUrl = uri("https://s01.oss.sonatype.org/content/repositories/snapshots/")
+            username = sonatypeUsername
+            password = sonatypePassword
+        }
+    }
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            from(components["java"])
+
+            pom {
+                groupId = "tech.ixirsii"
+                name = "clash4j"
+                description = "Clash4J is a Java library for the Clash of Clans API."
+                url = "https://github.com/Ixirsii/Clash4J"
+                developers {
+                    developer {
+                        id = "Ixirsii"
+                        name = "Ryan Porterfield"
+                        email = "ixirsii@ixirsii.tech"
+                    }
+                }
+                licenses {
+                    license {
+                        name = "BSD 3-Clause"
+                        url = "https://opensource.org/license/bsd-3-clause/"
+                    }
+                }
+                scm {
+                    connection = "scm:git:git@github.com:Ixirsii/Clash4J.git"
+                    developerConnection = "scm:git:git@github.com:Ixirsii/Clash4J.git"
+                    url = "https://github.com/Ixirsii/Clash4J.git"
+                }
+            }
+        }
+    }
+
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/ixirsii/Clash4J")
+            credentials {
+                username = System.getenv("GITHUB_ACTOR")
+                password = System.getenv("GITHUB_TOKEN")
+            }
+        }
+    }
+}
+
+signing {
+    val signingKey: String? by project
+    val signingPassword: String? by project
+    useInMemoryPgpKeys(signingKey, signingPassword)
+
+    sign(publishing.publications)
 }
 
 tasks.check {

@@ -62,7 +62,7 @@ jreleaser {
                 create("sonatype") {
                     active = Active.ALWAYS
                     url = "https://central.sonatype.com/api/v1/publisher"
-                    stagingRepository("target/staging-deploy")
+                    stagingRepository("build/staging-deploy")
                 }
             }
         }
@@ -77,7 +77,6 @@ jreleaser {
 
     signing {
         active = Active.ALWAYS
-        armored = true
     }
 }
 

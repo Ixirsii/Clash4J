@@ -44,7 +44,6 @@ import tech.ixirsii.clash.data.player.LegendLeagueTournamentSeasonResult;
 import tech.ixirsii.clash.data.player.LegendStatistics;
 import tech.ixirsii.clash.data.player.Player;
 import tech.ixirsii.clash.data.player.PlayerClan;
-import tech.ixirsii.clash.data.player.TokenResponse;
 import tech.ixirsii.clash.data.player.WarPreference;
 import tech.ixirsii.clash.data.war.Result;
 import tech.ixirsii.clash.data.war.State;

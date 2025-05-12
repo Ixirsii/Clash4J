@@ -19,6 +19,7 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 import reactor.core.publisher.Mono;
 import tech.ixirsii.clash.data.ClientError;
+import tech.ixirsii.clash.data.Label;
 import tech.ixirsii.clash.data.Page;
 import tech.ixirsii.clash.data.capital.CapitalRaidSeason;
 import tech.ixirsii.clash.data.clan.Clan;
@@ -692,6 +693,40 @@ public class ClashAPI {
     /* ********************************************************************************************************** *
      *                                                 Label APIs                                                 *
      * ********************************************************************************************************** */
+
+    /**
+     * Get clan labels.
+     *
+     * @param limit  (Optional) Result size limit.
+     * @param after  (Optional) Get page after key.
+     * @param before (Optional) Get page before key.
+     * @return Clan labels.
+     */
+    public Mono<Page<Label>> clanLabels(final Integer limit, final String after, final String before) {
+        log.trace("Getting clan labels");
+
+        final Map<String, String> queryParameters = getPaginationQueryParameters(limit, after, before);
+
+        return get("/labels/clans", queryParameters, new TypeReference<>() {
+        });
+    }
+
+    /**
+     * Get player labels.
+     *
+     * @param limit  (Optional) Result size limit.
+     * @param after  (Optional) Get page after key.
+     * @param before (Optional) Get page before key.
+     * @return Player labels.
+     */
+    public Mono<Page<Label>> playerLabels(final Integer limit, final String after, final String before) {
+        log.trace("Getting player labels");
+
+        final Map<String, String> queryParameters = getPaginationQueryParameters(limit, after, before);
+
+        return get("/labels/players", queryParameters, new TypeReference<>() {
+        });
+    }
 
     /* ********************************************************************************************************** *
      *                                           Private utility methods                                          *

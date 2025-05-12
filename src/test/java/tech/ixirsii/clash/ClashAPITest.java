@@ -12,6 +12,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import tech.ixirsii.clash.data.Cursor;
+import tech.ixirsii.clash.data.Label;
 import tech.ixirsii.clash.data.Page;
 import tech.ixirsii.clash.data.Paging;
 import tech.ixirsii.clash.data.capital.CapitalRaidSeason;
@@ -79,6 +80,7 @@ import static tech.ixirsii.clash.TestData.CLAN_TAG;
 import static tech.ixirsii.clash.TestData.FORBIDDEN_ERROR;
 import static tech.ixirsii.clash.TestData.GOLD_PASS_SEASON;
 import static tech.ixirsii.clash.TestData.INTERNAL_SERVER_ERROR;
+import static tech.ixirsii.clash.TestData.LABEL;
 import static tech.ixirsii.clash.TestData.LEAGUE;
 import static tech.ixirsii.clash.TestData.LEAGUE_GROUP;
 import static tech.ixirsii.clash.TestData.LEAGUE_WAR;
@@ -652,6 +654,40 @@ class ClashAPITest {
     }
 
     /* *********************************************** Label APIs *********************************************** */
+
+    @Test
+    void WHEN_clanLabels_THEN_returns_labels() throws IOException, URISyntaxException {
+        // Given
+        mockResponse("/response/labels.json");
+
+        // When
+        final Page<Label> actual = api.clanLabels(null, null, null).block();
+
+        // Then
+        verifyResponse();
+
+        assertEquals(
+                new Page<>(List.of(LABEL), null),
+                actual,
+                "Clan builder base rankings should equal expected");
+    }
+
+    @Test
+    void WHEN_playerLabels_THEN_returns_labels() throws IOException, URISyntaxException {
+        // Given
+        mockResponse("/response/labels.json");
+
+        // When
+        final Page<Label> actual = api.playerLabels(null, null, null).block();
+
+        // Then
+        verifyResponse();
+
+        assertEquals(
+                new Page<>(List.of(LABEL), null),
+                actual,
+                "Clan builder base rankings should equal expected");
+    }
 
     /* ************************************************* Paging ************************************************* */
 

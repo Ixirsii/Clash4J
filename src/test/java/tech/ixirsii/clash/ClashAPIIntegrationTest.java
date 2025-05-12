@@ -3,6 +3,7 @@ package tech.ixirsii.clash;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
+import tech.ixirsii.clash.data.Label;
 import tech.ixirsii.clash.data.Page;
 import tech.ixirsii.clash.data.capital.CapitalRaidSeason;
 import tech.ixirsii.clash.data.clan.Clan;
@@ -602,6 +603,28 @@ class ClashAPIIntegrationTest {
     }
 
     /* *********************************************** Label APIs *********************************************** */
+
+    @Test
+    void WHEN_clanLabels_THEN_returns_gold_pass_season() {
+        // When
+        final Page<Label> actual = api.clanLabels(null, null, null).block();
+
+        // Then
+        assertNotNull(actual, "Response should not be null");
+        assertNotNull(actual.items(), "Items should not be null");
+        assertFalse(actual.items().isEmpty(), "Clan labels should not be empty");
+    }
+
+    @Test
+    void WHEN_playerLabels_THEN_returns_gold_pass_season() {
+        // When
+        final Page<Label> actual = api.playerLabels(null, null, null).block();
+
+        // Then
+        assertNotNull(actual, "Response should not be null");
+        assertNotNull(actual.items(), "Items should not be null");
+        assertFalse(actual.items().isEmpty(), "Player labels should not be empty");
+    }
 
     /* ************************************************* Paging ************************************************* */
 

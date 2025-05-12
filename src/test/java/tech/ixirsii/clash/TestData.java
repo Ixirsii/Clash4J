@@ -765,6 +765,14 @@ public final class TestData {
             ZonedDateTime.of(2025, 1, 1, 8, 0, 0, 0, ZoneOffset.UTC),
             ZonedDateTime.of(2025, 2, 1, 8, 0, 0, 0, ZoneOffset.UTC));
 
+    public static final Label LABEL = new Label(
+            new IconURL(
+                    getURL("https://api-assets.clashofclans.com/labels/clanwars/medium.png"),
+                    getURL("https://api-assets.clashofclans.com/labels/clanwars/small.png"),
+                    getURL("https://api-assets.clashofclans.com/labels/clanwars/tiny.png")),
+            56000000,
+            "Clan Wars");
+
     /**
      * Hide utility class constructor.
      */

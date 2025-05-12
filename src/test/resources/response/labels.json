@@ -1,0 +1,13 @@
+{
+  "items": [
+    {
+      "iconUrls": {
+        "medium": "https://api-assets.clashofclans.com/labels/clanwars/medium.png",
+        "small": "https://api-assets.clashofclans.com/labels/clanwars/small.png",
+        "tiny": "https://api-assets.clashofclans.com/labels/clanwars/tiny.png"
+      },
+      "id": 56000000,
+      "name": "Clan Wars"
+    }
+  ]
+}

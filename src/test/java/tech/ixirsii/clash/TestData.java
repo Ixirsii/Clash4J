@@ -26,6 +26,7 @@ import tech.ixirsii.clash.data.clan.ClanMember;
 import tech.ixirsii.clash.data.clan.Language;
 import tech.ixirsii.clash.data.clan.Type;
 import tech.ixirsii.clash.data.clan.WarFrequency;
+import tech.ixirsii.clash.data.goldpass.GoldPassSeason;
 import tech.ixirsii.clash.data.league.BuilderBaseLeague;
 import tech.ixirsii.clash.data.league.CapitalLeague;
 import tech.ixirsii.clash.data.league.ClanWarLeagueClan;
@@ -759,6 +760,10 @@ public final class TestData {
                     1,
                     PLAYER_TAG,
                     5000);
+
+    public static final GoldPassSeason GOLD_PASS_SEASON = new GoldPassSeason(
+            ZonedDateTime.of(2025, 1, 1, 8, 0, 0, 0, ZoneOffset.UTC),
+            ZonedDateTime.of(2025, 2, 1, 8, 0, 0, 0, ZoneOffset.UTC));
 
     /**
      * Hide utility class constructor.

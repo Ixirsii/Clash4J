@@ -17,6 +17,7 @@ import tech.ixirsii.clash.data.Paging;
 import tech.ixirsii.clash.data.capital.CapitalRaidSeason;
 import tech.ixirsii.clash.data.clan.Clan;
 import tech.ixirsii.clash.data.clan.ClanMember;
+import tech.ixirsii.clash.data.goldpass.GoldPassSeason;
 import tech.ixirsii.clash.data.location.Location;
 import tech.ixirsii.clash.data.clan.WarFrequency;
 import tech.ixirsii.clash.data.league.BuilderBaseLeague;
@@ -76,6 +77,7 @@ import static tech.ixirsii.clash.TestData.CLAN_MEMBER;
 import static tech.ixirsii.clash.TestData.CLAN_RANKING;
 import static tech.ixirsii.clash.TestData.CLAN_TAG;
 import static tech.ixirsii.clash.TestData.FORBIDDEN_ERROR;
+import static tech.ixirsii.clash.TestData.GOLD_PASS_SEASON;
 import static tech.ixirsii.clash.TestData.INTERNAL_SERVER_ERROR;
 import static tech.ixirsii.clash.TestData.LEAGUE;
 import static tech.ixirsii.clash.TestData.LEAGUE_GROUP;
@@ -634,6 +636,20 @@ class ClashAPITest {
     }
 
     /* ********************************************* Gold Pass APIs ********************************************* */
+
+    @Test
+    void WHEN_goldPassSeason_THEN_returns_gold_pass_season() throws IOException, URISyntaxException {
+        // Given
+        mockResponse("/response/goldPassSeason.json");
+
+        // When
+        final GoldPassSeason actual = api.goldPassSeason().block();
+
+        // Then
+        verifyResponse();
+
+        assertEquals(GOLD_PASS_SEASON, actual, "Location should equal expected");
+    }
 
     /* *********************************************** Label APIs *********************************************** */
 

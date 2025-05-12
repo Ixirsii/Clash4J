@@ -8,6 +8,7 @@ import tech.ixirsii.clash.data.capital.CapitalRaidSeason;
 import tech.ixirsii.clash.data.clan.Clan;
 import tech.ixirsii.clash.data.clan.ClanMember;
 import tech.ixirsii.clash.data.clan.WarFrequency;
+import tech.ixirsii.clash.data.goldpass.GoldPassSeason;
 import tech.ixirsii.clash.data.league.BuilderBaseLeague;
 import tech.ixirsii.clash.data.league.CapitalLeague;
 import tech.ixirsii.clash.data.league.ClanWarLeagueGroup;
@@ -16,6 +17,11 @@ import tech.ixirsii.clash.data.league.League;
 import tech.ixirsii.clash.data.league.LeagueSeason;
 import tech.ixirsii.clash.data.league.PlayerRanking;
 import tech.ixirsii.clash.data.league.WarLeague;
+import tech.ixirsii.clash.data.location.ClanBuilderBaseRanking;
+import tech.ixirsii.clash.data.location.ClanCapitalRanking;
+import tech.ixirsii.clash.data.location.ClanRanking;
+import tech.ixirsii.clash.data.location.Location;
+import tech.ixirsii.clash.data.location.PlayerBuilderBaseRanking;
 import tech.ixirsii.clash.data.player.Player;
 import tech.ixirsii.clash.data.war.War;
 import tech.ixirsii.clash.data.war.WarLogEntry;
@@ -489,7 +495,111 @@ class ClashAPIIntegrationTest {
 
     /* ********************************************* Location APIs ********************************************** */
 
+    @Test
+    void GIVEN_location_ID_WHEN_clanBuilderBaseRankings_THEN_returns_rankings() {
+        // Given
+        final int locationId = 32000249;
+
+        // When
+        final Page<ClanBuilderBaseRanking> actual = api.clanBuilderBaseRankings(locationId, null, null, null).block();
+
+        // Then
+        assertNotNull(actual, "Response should not be null");
+        assertNotNull(actual.items(), "Items should not be null");
+        assertFalse(actual.items().isEmpty(), "Clan bulder base rankings should not be empty");
+    }
+
+    @Test
+    void GIVEN_location_ID_WHEN_clanCapitalRankings_THEN_returns_rankings() {
+        // Given
+        final int locationId = 32000249;
+
+        // When
+        final Page<ClanCapitalRanking> actual = api.clanCapitalRankings(locationId, null, null, null).block();
+
+        // Then
+        assertNotNull(actual, "Response should not be null");
+        assertNotNull(actual.items(), "Items should not be null");
+        assertFalse(actual.items().isEmpty(), "Clan capital rankings should not be empty");
+    }
+
+    @Test
+    void GIVEN_location_ID_WHEN_clanRankings_THEN_returns_rankings() {
+        // Given
+        final int locationId = 32000249;
+
+        // When
+        final Page<ClanRanking> actual = api.clanRankings(locationId, null, null, null).block();
+
+        // Then
+        assertNotNull(actual, "Response should not be null");
+        assertNotNull(actual.items(), "Items should not be null");
+        assertFalse(actual.items().isEmpty(), "Clan rankings should not be empty");
+    }
+
+    @Test
+    void GIVEN_location_ID_WHEN_location_THEN_returns_location() {
+        // Given
+        final int locationId = 32000249;
+
+        // When
+        final Location actual = api.location(locationId).block();
+
+        // Then
+        assertNotNull(actual, "Response should not be null");
+    }
+
+    @Test
+    void WHEN_locations_THEN_returns_location() {
+        // When
+        final Page<Location> actual = api.locations(null, null, null).block();
+
+        // Then
+        assertNotNull(actual, "Response should not be null");
+        assertNotNull(actual.items(), "Items should not be null");
+        assertFalse(actual.items().isEmpty(), "Locations should not be empty");
+    }
+
+    @Test
+    void GIVEN_location_ID_WHEN_playerBuilderBaseRankings_THEN_returns_rankings() {
+        // Given
+        final int locationId = 32000249;
+
+        // When
+        final Page<PlayerBuilderBaseRanking> actual =
+                api.playerBuilderBaseRanking(locationId, null, null, null).block();
+
+        // Then
+        assertNotNull(actual, "Response should not be null");
+        assertNotNull(actual.items(), "Items should not be null");
+        assertFalse(actual.items().isEmpty(), "Player builder base rankings should not be empty");
+    }
+
+    @Test
+    void GIVEN_location_ID_WHEN_playerRankings_THEN_returns_rankings() {
+        // Given
+        final int locationId = 32000249;
+
+        // When
+        final Page<tech.ixirsii.clash.data.location.PlayerRanking> actual =
+                api.playerRankings(locationId, null, null, null).block();
+
+        // Then
+        assertNotNull(actual, "Response should not be null");
+        assertNotNull(actual.items(), "Items should not be null");
+        assertFalse(actual.items().isEmpty(), "Player rankings should not be empty");
+    }
+
     /* ********************************************* Gold Pass APIs ********************************************* */
+
+    @Test
+    void WHEN_goldPassSeason_THEN_returns_gold_pass_season() {
+        // When
+        final GoldPassSeason actual = api.goldPassSeason().block();
+
+        // Then
+        assertNotNull(actual, "Response should not be null");
+    }
 
     /* *********************************************** Label APIs *********************************************** */
 

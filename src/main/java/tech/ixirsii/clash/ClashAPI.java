@@ -23,6 +23,7 @@ import tech.ixirsii.clash.data.Page;
 import tech.ixirsii.clash.data.capital.CapitalRaidSeason;
 import tech.ixirsii.clash.data.clan.Clan;
 import tech.ixirsii.clash.data.clan.ClanMember;
+import tech.ixirsii.clash.data.goldpass.GoldPassSeason;
 import tech.ixirsii.clash.data.location.Location;
 import tech.ixirsii.clash.data.clan.WarFrequency;
 import tech.ixirsii.clash.data.league.BuilderBaseLeague;
@@ -676,6 +677,17 @@ public class ClashAPI {
     /* ********************************************************************************************************** *
      *                                               Gold Pass APIs                                               *
      * ********************************************************************************************************** */
+
+    /**
+     * Get gold pass season.
+     *
+     * @return Current gold pass season.
+     */
+    public Mono<GoldPassSeason> goldPassSeason() {
+        log.trace("Getting gold pass season");
+
+        return get("/goldpass/seasons/current", GoldPassSeason.class);
+    }
 
     /* ********************************************************************************************************** *
      *                                                 Label APIs                                                 *

@@ -1,0 +1,31 @@
+{
+  "items": [
+    {
+      "builderBaseLeague": {
+        "id": 44000000,
+        "name": "Wood League V"
+      },
+      "builderBaseTrophies": 57882,
+      "clan": {
+        "badgeUrls": {
+          "small": "https://api-assets.clashofclans.com/clans/2Q82UJVY/small.png",
+          "medium": "https://api-assets.clashofclans.com/clans/2Q82UJVY/medium.png",
+          "large": "https://api-assets.clashofclans.com/clans/2Q82UJVY/large.png"
+        },
+        "name": "midwest warrior",
+        "tag": "#2Q82UJVY"
+      },
+      "expLevel": 254,
+      "location": {
+        "countryCode": "US",
+        "id": 32000249,
+        "isCountry": true,
+        "name": "United States"
+      },
+      "name": "Pew™",
+      "previousRank": 1,
+      "rank": 1,
+      "tag": "#GVY298UP"
+    }
+  ]
+}

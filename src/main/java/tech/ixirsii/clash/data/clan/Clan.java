@@ -5,6 +5,7 @@ import tech.ixirsii.clash.data.BadgeURL;
 import tech.ixirsii.clash.data.Label;
 import tech.ixirsii.clash.data.league.CapitalLeague;
 import tech.ixirsii.clash.data.league.WarLeague;
+import tech.ixirsii.clash.data.location.Location;
 
 import java.util.List;
 

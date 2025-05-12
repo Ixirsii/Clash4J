@@ -24,16 +24,15 @@ import tech.ixirsii.clash.data.clan.ClanCapital;
 import tech.ixirsii.clash.data.clan.ClanDistrict;
 import tech.ixirsii.clash.data.clan.ClanMember;
 import tech.ixirsii.clash.data.clan.Language;
-import tech.ixirsii.clash.data.clan.Location;
 import tech.ixirsii.clash.data.clan.Type;
 import tech.ixirsii.clash.data.clan.WarFrequency;
 import tech.ixirsii.clash.data.league.BuilderBaseLeague;
 import tech.ixirsii.clash.data.league.CapitalLeague;
 import tech.ixirsii.clash.data.league.ClanWarLeagueClan;
 import tech.ixirsii.clash.data.league.ClanWarLeagueGroup;
+import tech.ixirsii.clash.data.league.ClanWarLeagueGroupState;
 import tech.ixirsii.clash.data.league.ClanWarLeagueMember;
 import tech.ixirsii.clash.data.league.ClanWarLeagueRound;
-import tech.ixirsii.clash.data.league.ClanWarLeagueGroupState;
 import tech.ixirsii.clash.data.league.ClanWarLeagueWar;
 import tech.ixirsii.clash.data.league.ClanWarLeagueWarState;
 import tech.ixirsii.clash.data.league.League;
@@ -41,6 +40,11 @@ import tech.ixirsii.clash.data.league.LeagueSeason;
 import tech.ixirsii.clash.data.league.PlayerRanking;
 import tech.ixirsii.clash.data.league.PlayerRankingClan;
 import tech.ixirsii.clash.data.league.WarLeague;
+import tech.ixirsii.clash.data.location.ClanBuilderBaseRanking;
+import tech.ixirsii.clash.data.location.ClanCapitalRanking;
+import tech.ixirsii.clash.data.location.ClanRanking;
+import tech.ixirsii.clash.data.location.Location;
+import tech.ixirsii.clash.data.location.PlayerBuilderBaseRanking;
 import tech.ixirsii.clash.data.player.AchievementProgress;
 import tech.ixirsii.clash.data.player.HeroEquipment;
 import tech.ixirsii.clash.data.player.ItemLevel;
@@ -461,6 +465,7 @@ public final class TestData {
             PLAYER_TAG,
             17,
             4768);
+    public static final Location LOCATION = new Location("US", 32000249, true, "United States");
     public static final Clan CLAN = new Clan(
             BADGE_URL,
             new CapitalLeague(85000020, "Titan League II"),
@@ -507,7 +512,7 @@ public final class TestData {
                             56000016,
                             "Clan Capital")
             ),
-            new Location("US", 32000249, true, null, "United States"),
+            LOCATION,
             45,
             List.of(CLAN_MEMBER),
             CLAN_NAME,
@@ -672,7 +677,7 @@ public final class TestData {
             WarPreference.IN,
             1978);
 
-    public static final BuilderBaseLeague BUILDER_BASE_LEAGUE = new BuilderBaseLeague(44000000, "Wood League ");
+    public static final BuilderBaseLeague BUILDER_BASE_LEAGUE = new BuilderBaseLeague(44000000, "Wood League V");
     public static final CapitalLeague CAPITAL_LEAGUE = new CapitalLeague(85000001, "Bronze League III");
     public static final League LEAGUE = new League(
             new IconURL(
@@ -695,6 +700,65 @@ public final class TestData {
             PLAYER_TAG,
             4768);
     public static final WarLeague WAR_LEAGUE = new WarLeague(48000001, "Bronze League III");
+
+    public static final ClanBuilderBaseRanking CLAN_BUILDER_BASE_RANKING = new ClanBuilderBaseRanking(
+            BADGE_URL,
+            57882,
+            22,
+            LOCATION,
+            45,
+            CLAN_NAME,
+            1,
+            1,
+            CLAN_TAG);
+    public static final ClanCapitalRanking CLAN_CAPITAL_RANKING = new ClanCapitalRanking(
+            BADGE_URL,
+            57882,
+            22,
+            LOCATION,
+            45,
+            CLAN_NAME,
+            1,
+            1,
+            CLAN_TAG);
+    public static final ClanRanking CLAN_RANKING = new ClanRanking(
+            BADGE_URL,
+            22,
+            57882,
+            LOCATION,
+            45,
+            CLAN_NAME,
+            1,
+            1,
+            CLAN_TAG);
+    public static final PlayerBuilderBaseRanking PLAYER_BUILDER_BASE_RANKING = new PlayerBuilderBaseRanking(
+            BUILDER_BASE_LEAGUE,
+            57882,
+            new PlayerRankingClan(BADGE_URL, CLAN_NAME, CLAN_TAG),
+            254,
+            LOCATION,
+            PLAYER_NAME,
+            1,
+            1,
+            PLAYER_TAG);
+    public static final tech.ixirsii.clash.data.location.PlayerRanking LOCATION_PLAYER_RANKING =
+            new tech.ixirsii.clash.data.location.PlayerRanking(
+                    100,
+                    new PlayerRankingClan(BADGE_URL, CLAN_NAME, CLAN_TAG),
+                    1,
+                    254,
+                    new League(
+                            new IconURL(
+                                    getURL("https://api-assets.clashofclans.com/leagues/legend/medium.png"),
+                                    getURL("https://api-assets.clashofclans.com/leagues/legend/small.png"),
+                                    getURL("https://api-assets.clashofclans.com/leagues/legend/tiny.png")),
+                            29000022,
+                            "Legend League"),
+                    PLAYER_NAME,
+                    1,
+                    1,
+                    PLAYER_TAG,
+                    5000);
 
     /**
      * Hide utility class constructor.

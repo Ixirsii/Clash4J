@@ -1,0 +1,24 @@
+{
+  "items": [
+    {
+      "badgeUrls": {
+        "small": "https://api-assets.clashofclans.com/clans/2Q82UJVY/small.png",
+        "medium": "https://api-assets.clashofclans.com/clans/2Q82UJVY/medium.png",
+        "large": "https://api-assets.clashofclans.com/clans/2Q82UJVY/large.png"
+      },
+      "clanCapitalPoints": 57882,
+      "clanLevel": 22,
+      "location": {
+        "countryCode": "US",
+        "id": 32000249,
+        "isCountry": true,
+        "name": "United States"
+      },
+      "members": 45,
+      "name": "midwest warrior",
+      "previousRank": 1,
+      "rank": 1,
+      "tag": "#2Q82UJVY"
+    }
+  ]
+}

@@ -11,6 +11,7 @@ import tech.ixirsii.clash.data.league.PlayerRankingClan;
  * @param builderBaseTrophies Trophy count.
  * @param clan                Clan.
  * @param expLevel            Experience level.
+ * @param location            Location.
  * @param name                Player name.
  * @param previousRank        Previous builder base league rank.
  * @param rank                Current builder base league rank.
@@ -22,6 +23,7 @@ public record PlayerBuilderBaseRanking(
         int builderBaseTrophies,
         PlayerRankingClan clan,
         int expLevel,
+        Location location,
         String name,
         int previousRank,
         int rank,

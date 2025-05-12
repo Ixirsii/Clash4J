@@ -2,7 +2,6 @@ package tech.ixirsii.clash.data.location;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import tech.ixirsii.clash.data.BadgeURL;
-import tech.ixirsii.clash.data.clan.Location;
 
 /**
  * Clan ranking.

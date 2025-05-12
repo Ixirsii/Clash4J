@@ -1,0 +1,32 @@
+{
+  "items": [
+    {
+      "attackWins": 100,
+      "clan": {
+        "badgeUrls": {
+          "small": "https://api-assets.clashofclans.com/clans/2Q82UJVY/small.png",
+          "medium": "https://api-assets.clashofclans.com/clans/2Q82UJVY/medium.png",
+          "large": "https://api-assets.clashofclans.com/clans/2Q82UJVY/large.png"
+        },
+        "name": "midwest warrior",
+        "tag": "#2Q82UJVY"
+      },
+      "defenseWins": 1,
+      "expLevel": 254,
+      "league": {
+        "iconUrls": {
+          "medium": "https://api-assets.clashofclans.com/leagues/legend/medium.png",
+          "small": "https://api-assets.clashofclans.com/leagues/legend/small.png",
+          "tiny": "https://api-assets.clashofclans.com/leagues/legend/tiny.png"
+        },
+        "id": 29000022,
+        "name": "Legend League"
+      },
+      "name": "Pew™",
+      "previousRank": 1,
+      "rank": 1,
+      "tag": "#GVY298UP",
+      "trophies": 5000
+    }
+  ]
+}

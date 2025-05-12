@@ -17,6 +17,7 @@ import tech.ixirsii.clash.data.Paging;
 import tech.ixirsii.clash.data.capital.CapitalRaidSeason;
 import tech.ixirsii.clash.data.clan.Clan;
 import tech.ixirsii.clash.data.clan.ClanMember;
+import tech.ixirsii.clash.data.location.Location;
 import tech.ixirsii.clash.data.clan.WarFrequency;
 import tech.ixirsii.clash.data.league.BuilderBaseLeague;
 import tech.ixirsii.clash.data.league.CapitalLeague;
@@ -26,6 +27,10 @@ import tech.ixirsii.clash.data.league.League;
 import tech.ixirsii.clash.data.league.LeagueSeason;
 import tech.ixirsii.clash.data.league.PlayerRanking;
 import tech.ixirsii.clash.data.league.WarLeague;
+import tech.ixirsii.clash.data.location.ClanBuilderBaseRanking;
+import tech.ixirsii.clash.data.location.ClanCapitalRanking;
+import tech.ixirsii.clash.data.location.ClanRanking;
+import tech.ixirsii.clash.data.location.PlayerBuilderBaseRanking;
 import tech.ixirsii.clash.data.player.Player;
 import tech.ixirsii.clash.data.war.War;
 import tech.ixirsii.clash.data.war.WarLogEntry;
@@ -65,16 +70,22 @@ import static tech.ixirsii.clash.TestData.BUILDER_BASE_LEAGUE;
 import static tech.ixirsii.clash.TestData.CAPITAL_LEAGUE;
 import static tech.ixirsii.clash.TestData.CAPITAL_RAID_SEASON;
 import static tech.ixirsii.clash.TestData.CLAN;
+import static tech.ixirsii.clash.TestData.CLAN_BUILDER_BASE_RANKING;
+import static tech.ixirsii.clash.TestData.CLAN_CAPITAL_RANKING;
 import static tech.ixirsii.clash.TestData.CLAN_MEMBER;
+import static tech.ixirsii.clash.TestData.CLAN_RANKING;
 import static tech.ixirsii.clash.TestData.CLAN_TAG;
 import static tech.ixirsii.clash.TestData.FORBIDDEN_ERROR;
 import static tech.ixirsii.clash.TestData.INTERNAL_SERVER_ERROR;
 import static tech.ixirsii.clash.TestData.LEAGUE;
 import static tech.ixirsii.clash.TestData.LEAGUE_GROUP;
 import static tech.ixirsii.clash.TestData.LEAGUE_WAR;
+import static tech.ixirsii.clash.TestData.LOCATION;
+import static tech.ixirsii.clash.TestData.LOCATION_PLAYER_RANKING;
 import static tech.ixirsii.clash.TestData.METHOD_NOT_ALLOWED;
 import static tech.ixirsii.clash.TestData.NOT_FOUND_ERROR;
 import static tech.ixirsii.clash.TestData.PLAYER;
+import static tech.ixirsii.clash.TestData.PLAYER_BUILDER_BASE_RANKING;
 import static tech.ixirsii.clash.TestData.PLAYER_RANKING;
 import static tech.ixirsii.clash.TestData.PLAYER_TAG;
 import static tech.ixirsii.clash.TestData.SEASON;
@@ -493,6 +504,134 @@ class ClashAPITest {
     }
 
     /* ********************************************* Location APIs ********************************************** */
+
+    @Test
+    void GIVEN_location_ID_WHEN_clanBuilderBaseRankings_THEN_returns_rankings() throws IOException, URISyntaxException {
+        // Given
+        final int locationId = 32000249;
+
+        mockResponse("/response/clanBuilderBaseRankings.json");
+
+        // When
+        final Page<ClanBuilderBaseRanking> actual = api.clanBuilderBaseRankings(locationId, null, null, null).block();
+
+        // Then
+        verifyResponse();
+
+        assertEquals(
+                new Page<>(List.of(CLAN_BUILDER_BASE_RANKING), null),
+                actual,
+                "Clan builder base rankings should equal expected");
+    }
+
+    @Test
+    void GIVEN_location_ID_WHEN_clanCapitalRankings_THEN_returns_rankings() throws IOException, URISyntaxException {
+        // Given
+        final int locationId = 32000249;
+
+        mockResponse("/response/clanCapitalRankings.json");
+
+        // When
+        final Page<ClanCapitalRanking> actual = api.clanCapitalRankings(locationId, null, null, null).block();
+
+        // Then
+        verifyResponse();
+
+        assertEquals(
+                new Page<>(List.of(CLAN_CAPITAL_RANKING), null),
+                actual,
+                "Clan capital rankings should equal expected");
+    }
+
+    @Test
+    void GIVEN_location_ID_WHEN_clanRankings_THEN_returns_rankings() throws IOException, URISyntaxException {
+        // Given
+        final int locationId = 32000249;
+
+        mockResponse("/response/clanRankings.json");
+
+        // When
+        final Page<ClanRanking> actual = api.clanRankings(locationId, null, null, null).block();
+
+        // Then
+        verifyResponse();
+
+        assertEquals(
+                new Page<>(List.of(CLAN_RANKING), null),
+                actual,
+                "Clan rankings should equal expected");
+    }
+
+    @Test
+    void GIVEN_location_ID_WHEN_location_THEN_returns_location() throws IOException, URISyntaxException {
+        // Given
+        final int locationId = 32000249;
+
+        mockResponse("/response/location.json");
+
+        // When
+        final Location actual = api.location(locationId).block();
+
+        // Then
+        verifyResponse();
+
+        assertEquals(LOCATION, actual, "Location should equal expected");
+    }
+
+    @Test
+    void WHEN_locations_THEN_returns_location() throws IOException, URISyntaxException {
+        // Given
+        mockResponse("/response/locations.json");
+
+        // When
+        final Page<Location> actual = api.locations(null, null, null).block();
+
+        // Then
+        verifyResponse();
+
+        assertEquals(new Page<>(List.of(LOCATION), null), actual, "Locations should equal expected");
+    }
+
+    @Test
+    void GIVEN_location_ID_WHEN_playerBuilderBaseRankings_THEN_returns_rankings()
+            throws IOException, URISyntaxException {
+        // Given
+        final int locationId = 32000249;
+
+        mockResponse("/response/playerBuilderBaseRankings.json");
+
+        // When
+        final Page<PlayerBuilderBaseRanking> actual =
+                api.playerBuilderBaseRanking(locationId, null, null, null).block();
+
+        // Then
+        verifyResponse();
+
+        assertEquals(
+                new Page<>(List.of(PLAYER_BUILDER_BASE_RANKING), null),
+                actual,
+                "Player builder base rankings should equal expected");
+    }
+
+    @Test
+    void GIVEN_location_ID_WHEN_playerRankings_THEN_returns_rankings() throws IOException, URISyntaxException {
+        // Given
+        final int locationId = 32000249;
+
+        mockResponse("/response/playerRankings.json");
+
+        // When
+        final Page<tech.ixirsii.clash.data.location.PlayerRanking> actual =
+                api.playerRankings(locationId, null, null, null).block();
+
+        // Then
+        verifyResponse();
+
+        assertEquals(
+                new Page<>(List.of(LOCATION_PLAYER_RANKING), null),
+                actual,
+                "Player builder base rankings should equal expected");
+    }
 
     /* ********************************************* Gold Pass APIs ********************************************* */
 

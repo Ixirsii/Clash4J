@@ -23,6 +23,7 @@ import tech.ixirsii.clash.data.Page;
 import tech.ixirsii.clash.data.capital.CapitalRaidSeason;
 import tech.ixirsii.clash.data.clan.Clan;
 import tech.ixirsii.clash.data.clan.ClanMember;
+import tech.ixirsii.clash.data.location.Location;
 import tech.ixirsii.clash.data.clan.WarFrequency;
 import tech.ixirsii.clash.data.league.BuilderBaseLeague;
 import tech.ixirsii.clash.data.league.CapitalLeague;
@@ -32,6 +33,10 @@ import tech.ixirsii.clash.data.league.League;
 import tech.ixirsii.clash.data.league.LeagueSeason;
 import tech.ixirsii.clash.data.league.PlayerRanking;
 import tech.ixirsii.clash.data.league.WarLeague;
+import tech.ixirsii.clash.data.location.ClanBuilderBaseRanking;
+import tech.ixirsii.clash.data.location.ClanCapitalRanking;
+import tech.ixirsii.clash.data.location.ClanRanking;
+import tech.ixirsii.clash.data.location.PlayerBuilderBaseRanking;
 import tech.ixirsii.clash.data.player.Player;
 import tech.ixirsii.clash.data.player.TokenResponse;
 import tech.ixirsii.clash.data.war.War;
@@ -525,6 +530,148 @@ public class ClashAPI {
     /* ********************************************************************************************************** *
      *                                               Location APIs                                                *
      * ********************************************************************************************************** */
+
+    /**
+     * Get clan builder base rankings for a location.
+     *
+     * @param locationID Location ID.
+     * @param limit      (Optional) Result size limit.
+     * @param after      (Optional) Get page after key.
+     * @param before     (Optional) Get page before key.
+     * @return Clan builder base rankings for a location.
+     */
+    public Mono<Page<ClanBuilderBaseRanking>> clanBuilderBaseRankings(
+            final int locationID,
+            final Integer limit,
+            final String after,
+            final String before) {
+        log.trace("Getting clan builder base rankings for location {}", locationID);
+
+        final Map<String, String> queryParameters = getPaginationQueryParameters(limit, after, before);
+
+        return get("/locations/" + locationID + "/rankings/clans-builder-base", queryParameters, new TypeReference<>() {
+        });
+    }
+
+    /**
+     * Get clan capital rankings for a location.
+     *
+     * @param locationID Location ID.
+     * @param limit      (Optional) Result size limit.
+     * @param after      (Optional) Get page after key.
+     * @param before     (Optional) Get page before key.
+     * @return Clan capital rankings for a location.
+     */
+    public Mono<Page<ClanCapitalRanking>> clanCapitalRankings(
+            final int locationID,
+            final Integer limit,
+            final String after,
+            final String before) {
+        log.trace("Getting clan capital rankings for location {}", locationID);
+
+        final Map<String, String> queryParameters = getPaginationQueryParameters(limit, after, before);
+
+        return get("/locations/" + locationID + "/rankings/capitals", queryParameters, new TypeReference<>() {
+        });
+    }
+
+    /**
+     * Get clan rankings for a location.
+     *
+     * @param locationID Location ID.
+     * @param limit      (Optional) Result size limit.
+     * @param after      (Optional) Get page after key.
+     * @param before     (Optional) Get page before key.
+     * @return Clan rankings for a location.
+     */
+    public Mono<Page<ClanRanking>> clanRankings(
+            final int locationID,
+            final Integer limit,
+            final String after,
+            final String before) {
+        log.trace("Getting clan rankings for location {}", locationID);
+
+        final Map<String, String> queryParameters = getPaginationQueryParameters(limit, after, before);
+
+        return get("/locations/" + locationID + "/rankings/clans", queryParameters, new TypeReference<>() {
+        });
+    }
+
+    /**
+     * Get location.
+     *
+     * @param locationID Location ID.
+     * @return Location information.
+     */
+    public Mono<Location> location(final int locationID) {
+        log.trace("Getting location {}", locationID);
+
+        return get("/locations/" + locationID, Location.class);
+    }
+
+    /**
+     * Get locations.
+     *
+     * @param limit  (Optional) Result size limit.
+     * @param after  (Optional) Get page after key.
+     * @param before (Optional) Get page before key.
+     * @return Locations.
+     */
+    public Mono<Page<Location>> locations(final Integer limit, final String after, final String before) {
+        log.trace("Getting locations");
+
+        final Map<String, String> queryParameters = getPaginationQueryParameters(limit, after, before);
+
+        return get("/locations", queryParameters, new TypeReference<>() {
+        });
+    }
+
+    /**
+     * Get player builder base rankings for a location.
+     *
+     * @param locationID Location ID.
+     * @param limit      (Optional) Result size limit.
+     * @param after      (Optional) Get page after key.
+     * @param before     (Optional) Get page before key.
+     * @return Player builder base rankings for a location.
+     */
+    public Mono<Page<PlayerBuilderBaseRanking>> playerBuilderBaseRanking(
+            final int locationID,
+            final Integer limit,
+            final String after,
+            final String before) {
+        log.trace("Getting player builder base ranking for location {}", locationID);
+
+        final Map<String, String> queryParameters = getPaginationQueryParameters(limit, after, before);
+
+        return get(
+                "/locations/" + locationID + "/rankings/players-builder-base",
+                queryParameters,
+                new TypeReference<>() {
+                });
+    }
+
+    /**
+     * Get player rankings for a location.
+     *
+     * @param locationID Location ID.
+     * @param limit      (Optional) Result size limit.
+     * @param after      (Optional) Get page after key.
+     * @param before     (Optional) Get page before key.
+     * @return Player rankings for a location.
+     */
+    public Mono<Page<tech.ixirsii.clash.data.location.PlayerRanking>> playerRankings(
+            final int locationID,
+            final Integer limit,
+            final String after,
+            final String before) {
+        log.trace("Getting player rankings for location {}", locationID);
+
+        final Map<String, String> queryParameters = getPaginationQueryParameters(limit, after, before);
+
+        return get("/locations/" + locationID + "/rankings/players", queryParameters, new TypeReference<>() {
+        });
+    }
 
     /* ********************************************************************************************************** *
      *                                               Gold Pass APIs                                               *

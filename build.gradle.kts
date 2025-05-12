@@ -1,3 +1,5 @@
+import org.jreleaser.model.Active
+
 plugins {
     id("java-library")
     id("checkstyle")
@@ -7,7 +9,7 @@ plugins {
 
     alias(libs.plugins.axion)
     alias(libs.plugins.lombok)
-    alias(libs.plugins.nexus.publish)
+    alias(libs.plugins.jreleaser)
 }
 
 group = "tech.ixirsii"
@@ -54,17 +56,29 @@ java {
     withJavadocJar()
 }
 
-nexusPublishing {
-    val sonatypeUsername: String? by project
-    val sonatypePassword: String? by project
-
-    repositories {
-        sonatype {
-            nexusUrl = uri("https://s01.oss.sonatype.org/service/local/")
-            snapshotRepositoryUrl = uri("https://s01.oss.sonatype.org/content/repositories/snapshots/")
-            username = sonatypeUsername
-            password = sonatypePassword
+jreleaser {
+    deploy {
+        maven {
+            mavenCentral {
+                create("sonatype") {
+                    active = Active.ALWAYS
+                    url = "https://central.sonatype.com/api/v1/publisher"
+                    stagingRepository("target/staging-deploy")
+                }
+            }
         }
+    }
+
+    release {
+        github {
+            repoOwner = "Ixirsii"
+            overwrite = true
+        }
+    }
+
+    signing {
+        active = Active.ALWAYS
+        armored = true
     }
 }
 
@@ -99,25 +113,6 @@ publishing {
             }
         }
     }
-
-    repositories {
-        maven {
-            name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/ixirsii/Clash4J")
-            credentials {
-                username = System.getenv("GITHUB_ACTOR")
-                password = System.getenv("GITHUB_TOKEN")
-            }
-        }
-    }
-}
-
-signing {
-    val signingKey: String? by project
-    val signingPassword: String? by project
-    useInMemoryPgpKeys(signingKey, signingPassword)
-
-    sign(publishing.publications)
 }
 
 tasks.check {

@@ -25,8 +25,13 @@ import tech.ixirsii.clash.data.clan.Clan;
 import tech.ixirsii.clash.data.clan.ClanMember;
 import tech.ixirsii.clash.data.clan.WarFrequency;
 import tech.ixirsii.clash.data.league.BuilderBaseLeague;
+import tech.ixirsii.clash.data.league.CapitalLeague;
 import tech.ixirsii.clash.data.league.ClanWarLeagueGroup;
 import tech.ixirsii.clash.data.league.ClanWarLeagueWar;
+import tech.ixirsii.clash.data.league.League;
+import tech.ixirsii.clash.data.league.LeagueSeason;
+import tech.ixirsii.clash.data.league.PlayerRanking;
+import tech.ixirsii.clash.data.league.WarLeague;
 import tech.ixirsii.clash.data.player.Player;
 import tech.ixirsii.clash.data.player.TokenResponse;
 import tech.ixirsii.clash.data.war.War;
@@ -349,7 +354,7 @@ public class ClashAPI {
      * @param leagueID League ID.
      * @return Builder base league information.
      */
-    public Mono<BuilderBaseLeague> builderBaseLeague(@NonNull final String leagueID) {
+    public Mono<BuilderBaseLeague> builderBaseLeague(final int leagueID) {
         log.trace("Getting builder base league {}", leagueID);
 
         return get("/builderbaseleagues/" + leagueID, BuilderBaseLeague.class);
@@ -372,6 +377,148 @@ public class ClashAPI {
         final Map<String, String> queryParameters = getPaginationQueryParameters(limit, after, before);
 
         return get("/builderbaseleagues", queryParameters, new TypeReference<>() {
+        });
+    }
+
+    /**
+     * Get clan capital league.
+     *
+     * @param leagueID League ID.
+     * @return Clan capital league information.
+     */
+    public Mono<CapitalLeague> capitalLeague(final int leagueID) {
+        log.trace("Getting clan capital league {}", leagueID);
+
+        return get("/capitalleagues/" + leagueID, CapitalLeague.class);
+    }
+
+    /**
+     * Get clan capital leagues.
+     *
+     * @param limit  (Optional) Result size limit.
+     * @param after  (Optional) Get page after key.
+     * @param before (Optional) Get page before key.
+     * @return Clan capital leagues.
+     */
+    public Mono<Page<CapitalLeague>> capitalLeagues(
+            final Integer limit,
+            final String after,
+            final String before) {
+        log.trace("Getting clan capital leagues");
+
+        final Map<String, String> queryParameters = getPaginationQueryParameters(limit, after, before);
+
+        return get("/capitalleagues", queryParameters, new TypeReference<>() {
+        });
+    }
+
+    /**
+     * Get league.
+     *
+     * @param leagueID League ID.
+     * @return League information.
+     */
+    public Mono<League> league(final int leagueID) {
+        log.trace("Getting league {}", leagueID);
+
+        return get("/leagues/" + leagueID, League.class);
+    }
+
+    /**
+     * Get leagues.
+     *
+     * @param limit  (Optional) Result size limit.
+     * @param after  (Optional) Get page after key.
+     * @param before (Optional) Get page before key.
+     * @return Leagues.
+     */
+    public Mono<Page<League>> leagues(
+            final Integer limit,
+            final String after,
+            final String before) {
+        log.trace("Getting leagues");
+
+        final Map<String, String> queryParameters = getPaginationQueryParameters(limit, after, before);
+
+        return get("/leagues", queryParameters, new TypeReference<>() {
+        });
+    }
+
+    /**
+     * Get monthly (seasonal) rankings for a league.
+     *
+     * @param leagueID League ID.
+     * @param seasonID Season ID.
+     * @param limit    (Optional) Result size limit.
+     * @param after    (Optional) Get page after key.
+     * @param before   (Optional) Get page before key.
+     * @return Monthly (seasonal) rankings for a league.
+     */
+    public Mono<Page<PlayerRanking>> leagueSeason(
+            final int leagueID,
+            @NonNull final String seasonID,
+            final Integer limit,
+            final String after,
+            final String before) {
+        log.trace("Getting league {} season {}", leagueID, seasonID);
+
+        final Map<String, String> queryParameters = getPaginationQueryParameters(limit, after, before);
+
+        return get("/leagues/" + leagueID + "/seasons/" + seasonID, queryParameters, new TypeReference<>() {
+        });
+    }
+
+    /**
+     * Get months (seasons) for a league.
+     *
+     * @param leagueID League ID.
+     * @param limit    (Optional) Result size limit.
+     * @param after    (Optional) Get page after key.
+     * @param before   (Optional) Get page before key.
+     * @return Months (seasons) for a league.
+     */
+    public Mono<Page<LeagueSeason>> leagueSeasons(
+            final int leagueID,
+            final Integer limit,
+            final String after,
+            final String before) {
+        log.trace("Getting league {} seasons", leagueID);
+
+        final Map<String, String> queryParameters = getPaginationQueryParameters(limit, after, before);
+
+        return get("/leagues/" + leagueID + "/seasons", queryParameters, new TypeReference<>() {
+        });
+    }
+
+    /**
+     * Get clan war league.
+     *
+     * @param leagueID League ID.
+     * @return Clan war league information.
+     */
+    public Mono<WarLeague> warLeague(final int leagueID) {
+        log.trace("Getting clan war league {}", leagueID);
+
+        return get("/warleagues/" + leagueID, WarLeague.class);
+    }
+
+    /**
+     * Get clan war leagues.
+     *
+     * @param limit  (Optional) Result size limit.
+     * @param after  (Optional) Get page after key.
+     * @param before (Optional) Get page before key.
+     * @return Clan war leagues.
+     */
+    public Mono<Page<WarLeague>> warLeagues(
+            final Integer limit,
+            final String after,
+            final String before) {
+        log.trace("Getting clan war leagues");
+
+        final Map<String, String> queryParameters = getPaginationQueryParameters(limit, after, before);
+
+        return get("/warleagues", queryParameters, new TypeReference<>() {
         });
     }
 

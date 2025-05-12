@@ -33,9 +33,13 @@ import tech.ixirsii.clash.data.league.ClanWarLeagueClan;
 import tech.ixirsii.clash.data.league.ClanWarLeagueGroup;
 import tech.ixirsii.clash.data.league.ClanWarLeagueMember;
 import tech.ixirsii.clash.data.league.ClanWarLeagueRound;
-import tech.ixirsii.clash.data.league.ClanWarLeagueState;
+import tech.ixirsii.clash.data.league.ClanWarLeagueGroupState;
 import tech.ixirsii.clash.data.league.ClanWarLeagueWar;
+import tech.ixirsii.clash.data.league.ClanWarLeagueWarState;
 import tech.ixirsii.clash.data.league.League;
+import tech.ixirsii.clash.data.league.LeagueSeason;
+import tech.ixirsii.clash.data.league.PlayerRanking;
+import tech.ixirsii.clash.data.league.PlayerRankingClan;
 import tech.ixirsii.clash.data.league.WarLeague;
 import tech.ixirsii.clash.data.player.AchievementProgress;
 import tech.ixirsii.clash.data.player.HeroEquipment;
@@ -534,7 +538,7 @@ public final class TestData {
                     new ClanWarLeagueRound(List.of("#war61", "#war62", "#war63", "#war64")),
                     new ClanWarLeagueRound(List.of("#war71", "#war72", "#war73", "#war74"))),
             "2025-01",
-            ClanWarLeagueState.ENDED,
+            ClanWarLeagueGroupState.ENDED,
             "#LEAGUE");
     public static final WarAttack WAR_ATTACK = new WarAttack(PLAYER_TAG, PLAYER_TAG, 100, 65, 1, 3);
     public static final WarClan WAR_CLAN = new WarClan(
@@ -560,7 +564,7 @@ public final class TestData {
             WAR_CLAN,
             ZonedDateTime.of(2025, 1, 1, 12, 0, 0, 0, ZoneOffset.UTC),
             ZonedDateTime.of(2025, 1, 1, 11, 0, 0, 0, ZoneOffset.UTC),
-            ClanWarLeagueState.WAR,
+            ClanWarLeagueWarState.WAR,
             30,
             ZonedDateTime.of(2025, 1, 2, 12, 0, 0, 0, ZoneOffset.UTC));
     public static final War WAR = new War(
@@ -667,6 +671,30 @@ public final class TestData {
             2923,
             WarPreference.IN,
             1978);
+
+    public static final BuilderBaseLeague BUILDER_BASE_LEAGUE = new BuilderBaseLeague(44000000, "Wood League ");
+    public static final CapitalLeague CAPITAL_LEAGUE = new CapitalLeague(85000001, "Bronze League III");
+    public static final League LEAGUE = new League(
+            new IconURL(
+                    getURL("https://api-assets.clashofclans.com/leagues/bronzeiii/medium.png"),
+                    getURL("https://api-assets.clashofclans.com/leagues/bronzeiii/small.png"),
+                    getURL("https://api-assets.clashofclans.com/leagues/bronzeiii/tiny.png")),
+            29000001,
+            "Bronze League III");
+    public static final LeagueSeason SEASON = new LeagueSeason("2025-01");
+    public static final PlayerRanking PLAYER_RANKING = new PlayerRanking(
+            100,
+            new PlayerRankingClan(
+                    BADGE_URL,
+                    CLAN_NAME,
+                    CLAN_TAG),
+            1,
+            254,
+            PLAYER_NAME,
+            1,
+            PLAYER_TAG,
+            4768);
+    public static final WarLeague WAR_LEAGUE = new WarLeague(48000001, "Bronze League III");
 
     /**
      * Hide utility class constructor.

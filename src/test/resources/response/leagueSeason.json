@@ -1,0 +1,22 @@
+{
+  "items": [
+    {
+      "attackWins": 100,
+      "clan": {
+        "badgeUrls": {
+          "small": "https://api-assets.clashofclans.com/clans/2Q82UJVY/small.png",
+          "medium": "https://api-assets.clashofclans.com/clans/2Q82UJVY/medium.png",
+          "large": "https://api-assets.clashofclans.com/clans/2Q82UJVY/large.png"
+        },
+        "name": "midwest warrior",
+        "tag": "#2Q82UJVY"
+      },
+      "defenseWins": 1,
+      "expLevel": 254,
+      "name": "Pew™",
+      "rank": 1,
+      "tag": "#GVY298UP",
+      "trophies": 4768
+    }
+  ]
+}

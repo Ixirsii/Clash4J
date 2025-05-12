@@ -1,0 +1,9 @@
+{
+  "iconUrls": {
+    "medium": "https://api-assets.clashofclans.com/leagues/bronzeiii/medium.png",
+    "small": "https://api-assets.clashofclans.com/leagues/bronzeiii/small.png",
+    "tiny": "https://api-assets.clashofclans.com/leagues/bronzeiii/tiny.png"
+  },
+  "id": 29000001,
+  "name": "Bronze League III"
+}

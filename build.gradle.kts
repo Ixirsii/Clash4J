@@ -28,7 +28,6 @@ dependencies {
     mockitoAgent(libs.mockito.core) { isTransitive = false }
 
     testImplementation(libs.bundles.mockito)
-    testImplementation(libs.reactor.test)
     testImplementation(platform(libs.junit.bom))
     testImplementation(libs.bundles.junit)
 

@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * @author Ryan Porterfield
  * @since 1.0.0
  */
-public enum ClanWarLeagueState {
+public enum ClanWarLeagueWarState {
     /**
      * Not found.
      */

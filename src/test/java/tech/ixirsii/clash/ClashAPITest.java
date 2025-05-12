@@ -18,8 +18,14 @@ import tech.ixirsii.clash.data.capital.CapitalRaidSeason;
 import tech.ixirsii.clash.data.clan.Clan;
 import tech.ixirsii.clash.data.clan.ClanMember;
 import tech.ixirsii.clash.data.clan.WarFrequency;
+import tech.ixirsii.clash.data.league.BuilderBaseLeague;
+import tech.ixirsii.clash.data.league.CapitalLeague;
 import tech.ixirsii.clash.data.league.ClanWarLeagueGroup;
 import tech.ixirsii.clash.data.league.ClanWarLeagueWar;
+import tech.ixirsii.clash.data.league.League;
+import tech.ixirsii.clash.data.league.LeagueSeason;
+import tech.ixirsii.clash.data.league.PlayerRanking;
+import tech.ixirsii.clash.data.league.WarLeague;
 import tech.ixirsii.clash.data.player.Player;
 import tech.ixirsii.clash.data.war.War;
 import tech.ixirsii.clash.data.war.WarLogEntry;
@@ -38,8 +44,12 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -51,21 +61,27 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 import static tech.ixirsii.clash.TestData.BAD_REQUEST_ERROR;
+import static tech.ixirsii.clash.TestData.BUILDER_BASE_LEAGUE;
+import static tech.ixirsii.clash.TestData.CAPITAL_LEAGUE;
 import static tech.ixirsii.clash.TestData.CAPITAL_RAID_SEASON;
 import static tech.ixirsii.clash.TestData.CLAN;
 import static tech.ixirsii.clash.TestData.CLAN_MEMBER;
 import static tech.ixirsii.clash.TestData.CLAN_TAG;
 import static tech.ixirsii.clash.TestData.FORBIDDEN_ERROR;
 import static tech.ixirsii.clash.TestData.INTERNAL_SERVER_ERROR;
+import static tech.ixirsii.clash.TestData.LEAGUE;
 import static tech.ixirsii.clash.TestData.LEAGUE_GROUP;
 import static tech.ixirsii.clash.TestData.LEAGUE_WAR;
 import static tech.ixirsii.clash.TestData.METHOD_NOT_ALLOWED;
 import static tech.ixirsii.clash.TestData.NOT_FOUND_ERROR;
 import static tech.ixirsii.clash.TestData.PLAYER;
+import static tech.ixirsii.clash.TestData.PLAYER_RANKING;
 import static tech.ixirsii.clash.TestData.PLAYER_TAG;
+import static tech.ixirsii.clash.TestData.SEASON;
 import static tech.ixirsii.clash.TestData.SERVICE_UNAVAILABLE_ERROR;
 import static tech.ixirsii.clash.TestData.TOO_MANY_REQUESTS_ERROR;
 import static tech.ixirsii.clash.TestData.WAR;
+import static tech.ixirsii.clash.TestData.WAR_LEAGUE;
 import static tech.ixirsii.clash.TestData.WAR_LOG;
 
 @ExtendWith(MockitoExtension.class)
@@ -94,6 +110,11 @@ class ClashAPITest {
     @AfterEach
     void tearDown() {
         verifyNoMoreInteractions(body, call, client, response);
+    }
+
+    @Test
+    void GIVEN_token_WHEN_constructor_THEN_returns_ClashAPI() {
+        assertDoesNotThrow(() -> new ClashAPI(TOKEN), "ClashAPI should be created");
     }
 
     /* *********************************************** Clan APIs ************************************************ */
@@ -301,6 +322,175 @@ class ClashAPITest {
     }
 
     /* ********************************************** League APIs *********************************************** */
+
+    @Test
+    void GIVEN_league_ID_WHEN_builderBaseLeague_THEN_returns_builder_base_league()
+            throws IOException, URISyntaxException {
+        // Given
+        final int leagueId = 44000000;
+
+        mockResponse("/response/builderBaseLeague.json");
+
+        // When
+        final BuilderBaseLeague actual = api.builderBaseLeague(leagueId).block();
+
+        // Then
+        verifyResponse();
+
+        assertEquals(BUILDER_BASE_LEAGUE, actual, "Builder base league should equal expected");
+    }
+
+    @Test
+    void WHEN_builderBaseLeagues_THEN_returns_builder_base_leagues() throws IOException, URISyntaxException {
+        // Given
+        mockResponse("/response/builderBaseLeagues.json");
+
+        // When
+        final Page<BuilderBaseLeague> actual = api.builderBaseLeagues(null, null, null).block();
+
+        // Then
+        verifyResponse();
+
+        assertEquals(
+                new Page<>(List.of(BUILDER_BASE_LEAGUE), null),
+                actual,
+                "Builder base leagues should equal expected");
+    }
+
+    @Test
+    void GIVEN_league_ID_WHEN_capitalLeague_THEN_returns_capital_league() throws IOException, URISyntaxException {
+        // Given
+        final int leagueId = 85000001;
+
+        mockResponse("/response/capitalLeague.json");
+
+        // When
+        final CapitalLeague actual = api.capitalLeague(leagueId).block();
+
+        // Then
+        verifyResponse();
+
+        assertEquals(CAPITAL_LEAGUE, actual, "Clan capital league should equal expected");
+    }
+
+    @Test
+    void WHEN_capitalLeagues_THEN_returns_capital_leagues() throws IOException, URISyntaxException {
+        // Given
+        mockResponse("/response/capitalLeagues.json");
+
+        // When
+        final Page<CapitalLeague> actual = api.capitalLeagues(null, null, null).block();
+
+        // Then
+        verifyResponse();
+
+        assertEquals(
+                new Page<>(List.of(CAPITAL_LEAGUE), null),
+                actual,
+                "Clan capital leagues should equal expected");
+    }
+
+    @Test
+    void GIVEN_league_ID_WHEN_league_THEN_returns_league() throws IOException, URISyntaxException {
+        // Given
+        final int leagueId = 29000001;
+
+        mockResponse("/response/league.json");
+
+        // When
+        final League actual = api.league(leagueId).block();
+
+        // Then
+        verifyResponse();
+
+        assertEquals(LEAGUE, actual, "League should equal expected");
+    }
+
+    @Test
+    void WHEN_leagues_THEN_returns_leagues() throws IOException, URISyntaxException {
+        // Given
+        mockResponse("/response/leagues.json");
+
+        // When
+        final Page<League> actual = api.leagues(null, null, null).block();
+
+        // Then
+        verifyResponse();
+
+        assertEquals(
+                new Page<>(List.of(LEAGUE), null),
+                actual,
+                "Leagues should equal expected");
+    }
+
+    @Test
+    void GIVEN_league_ID_and_season_ID_WHEN_leagueSeason_THEN_returns_player_rankings()
+            throws IOException, URISyntaxException {
+        // Given
+        final int leagueId = 29000022;
+        final LocalDate now = LocalDate.now().minus(1, ChronoUnit.MONTHS);
+        final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM");
+        final String seasonId = formatter.format(now);
+
+        mockResponse("/response/leagueSeason.json");
+
+        // When
+        final Page<PlayerRanking> actual = api.leagueSeason(leagueId, seasonId, null, null, null).block();
+
+        // Then
+        verifyResponse();
+
+        assertEquals(new Page<>(List.of(PLAYER_RANKING), null), actual, "Player rankings should equal expected");
+    }
+
+    @Test
+    void GIVEN_league_ID_WHEN_leagueSeasons_THEN_returns_league_seasons() throws IOException, URISyntaxException {
+        // Given
+        final int leagueId = 29000022;
+
+        mockResponse("/response/leagueSeasons.json");
+
+        // When
+        final Page<LeagueSeason> actual = api.leagueSeasons(leagueId, null, null, null).block();
+
+        // Then
+        verifyResponse();
+
+        assertEquals(new Page<>(List.of(SEASON), null), actual, "League seasons should equal expected");
+    }
+
+    @Test
+    void GIVEN_league_ID_WHEN_warLeague_THEN_returns_war_league() throws IOException, URISyntaxException {
+        // Given
+        final int leagueId = 48000001;
+
+        mockResponse("/response/warLeague.json");
+
+        // When
+        final WarLeague actual = api.warLeague(leagueId).block();
+
+        // Then
+        verifyResponse();
+
+        assertEquals(WAR_LEAGUE, actual, "War league should equal expected");
+    }
+
+    @Test
+    void WHEN_warLeagues_THEN_returns_war_leagues() throws IOException, URISyntaxException {
+        // Given
+        mockResponse("/response/warLeagues.json");
+
+        // When
+        final Page<WarLeague> actual = api.warLeagues(null, null, null).block();
+
+        // Then
+        verifyResponse();
+
+        assertEquals(
+                new Page<>(List.of(WAR_LEAGUE), null),
+                actual,
+                "War leagues should equal expected");
+    }
 
     /* ********************************************* Location APIs ********************************************** */
 

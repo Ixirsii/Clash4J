@@ -24,7 +24,7 @@ public record ClanWarLeagueWar(
         WarClan opponent,
         ZonedDateTime preparationStartTime,
         ZonedDateTime startTime,
-        ClanWarLeagueState state,
+        ClanWarLeagueWarState state,
         int teamSize,
         ZonedDateTime warStartTime) {
 }

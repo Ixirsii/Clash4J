@@ -17,6 +17,6 @@ public record ClanWarLeagueGroup(
         List<ClanWarLeagueClan> clans,
         List<ClanWarLeagueRound> rounds,
         String season,
-        ClanWarLeagueState state,
+        ClanWarLeagueGroupState state,
         String tag) {
 }

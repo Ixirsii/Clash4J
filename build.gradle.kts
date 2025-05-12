@@ -5,7 +5,6 @@ plugins {
     id("checkstyle")
     id("jacoco")
     id("maven-publish")
-    id("signing")
 
     alias(libs.plugins.axion)
     alias(libs.plugins.lombok)
@@ -111,6 +110,12 @@ publishing {
                     url = "https://github.com/Ixirsii/Clash4J.git"
                 }
             }
+        }
+    }
+
+    repositories {
+        maven {
+            url = layout.buildDirectory.dir("staging-deploy").get().asFile.toURI()
         }
     }
 }
